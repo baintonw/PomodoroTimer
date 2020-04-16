@@ -1,0 +1,29 @@
+body {
+    padding: 0;
+    margin: 0;
+    /* text-align:center; */
+}
+
+#tomato {
+    display: block;
+    margin: 5rem auto 0 auto;
+    /* padding: auto; */
+}
+
+#timer {
+    box-sizing: border-box;
+    display: block;
+    margin: 2rem auto;
+
+    padding: .6rem 0;
+    
+    width: 10rem;
+    height: 4rem;
+
+
+    font-size: 2.5rem;
+
+    letter-spacing: .10em;
+    text-align: center;
+
+}
