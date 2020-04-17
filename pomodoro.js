@@ -1,5 +1,12 @@
 //Elememts
-const timer = document.querySelector('#timer')
+const timer = document.querySelector('#timer');
+const menu = document.querySelector('#menu');
+const burger = document.querySelector('#burger');
+
+//Event Listeners
+burger.addEventListener('click', () => {
+    menu.classList.toggle('open')
+})
 
 //
 const timeElapsed = {
