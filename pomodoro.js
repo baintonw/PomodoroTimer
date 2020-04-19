@@ -2,10 +2,15 @@
 const timer = document.querySelector('#timer');
 const menu = document.querySelector('#menu');
 const burger = document.querySelector('#burger');
+const resetBtn = document.querySelector('#reset-btn');
 
 //Event Listeners
 burger.addEventListener('click', () => {
     menu.classList.toggle('open')
+})
+resetBtn.addEventListener('click', () => {
+    reset();
+
 })
 
 //
@@ -79,7 +84,9 @@ function formatTime() {
 
 
 function displayTime() {
-    incrementSeconds();
+    if(interval) {
+        incrementSeconds();
+    }
     timer.innerText = formatTime();
 
 }
@@ -98,4 +105,10 @@ function stopTimer() {
 
     clearInterval(interval);
     interval = null;
+}
+
+function reset() {
+    stopTimer();
+    resetClock();
+    displayTime();
 }
