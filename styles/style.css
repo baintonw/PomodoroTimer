@@ -45,7 +45,7 @@ body {
 #timer {
     box-sizing: border-box;
     display: block;
-    margin: 2rem auto;
+    margin: 1rem auto;
 
     padding: .6rem 0;
     
@@ -58,4 +58,13 @@ body {
     letter-spacing: .10em;
     text-align: center;
 
+}
+
+#reset-btn {
+    box-sizing: border-box;
+    display: block;
+
+    margin: auto;
+    width: 8rem;
+    height: 3rem;
 }
