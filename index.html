@@ -6,12 +6,22 @@
     <title>Document</title>
     <link rel="stylesheet" href="./styles/style.css">
 </head>
-<body>
-        <div id="menu"></div>
-        <img id="burger" src="./public/icons/menuburger.svg" alt="">
-        <img id="tomato" src="./public/images/tomato.svg" alt="">
-        <button id="timer"></button>
-        <button id="reset-btn">Reset</button>
+<body>  
+    <div class="modal">
+        <div class="modal-box">
+            <span id="close-btn">X</span>
+            
+            <div class="modal-content">
+                <h2 id="modal-title">Welcome!</h2>
+                <p>What are you working on today?</p>
+              </div>
+        </div>
+    </div>
+    <div id="menu"></div>
+    <img id="burger" src="./public/icons/menuburger.svg" alt="">
+    <img id="tomato" src="./public/images/tomato.svg" alt="">
+    <button id="timer"></button>
+    <button id="reset-btn">Reset</button>
     
     <script src="./pomodoro.js"></script>
 </body>

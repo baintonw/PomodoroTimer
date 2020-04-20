@@ -3,6 +3,8 @@ const timer = document.querySelector('#timer');
 const menu = document.querySelector('#menu');
 const burger = document.querySelector('#burger');
 const resetBtn = document.querySelector('#reset-btn');
+const closeBtn = document.querySelector('#close-btn');
+const modal = document.querySelector('.modal');
 
 //Event Listeners
 burger.addEventListener('click', () => {
@@ -12,12 +14,15 @@ resetBtn.addEventListener('click', () => {
     reset();
 
 })
+closeBtn.addEventListener('click', () => {
+    modal.classList.toggle('closed')
+})
 
 //
 const timeElapsed = {
     hours: 0,
     minutes: 0,
-    seconds: 0
+    seconds: 55
 }
 
 let running = false;
@@ -39,17 +44,18 @@ function incrementMinutes() {
     timeElapsed.minutes++
     if(timeElapsed.minutes >= 25 && timeElapsed.seconds === 0) {
         alert('It has been 25 minutes, please take a 5 minute break.')
+        stopTimer(timeElapsed)
     }
-    stopTimer(timeElapsed)
 }
 
 
 function incrementSeconds() {
     timeElapsed.seconds++;
-    if(timeElapsed.seconds >= 60) {
+    if(timeElapsed.seconds === 60) {
         timeElapsed.seconds = 0;
         incrementMinutes(timeElapsed)
     }
+
     console.log(`${timeElapsed.minutes}: ${timeElapsed.seconds}`)
 }
 
