@@ -5,6 +5,7 @@ const burger = document.querySelector('#burger');
 const resetBtn = document.querySelector('#reset-btn');
 const closeBtn = document.querySelector('#close-btn');
 const modal = document.querySelector('.modal');
+const modalBox = document.querySelector('.modal-box')
 
 //Event Listeners
 burger.addEventListener('click', () => {
@@ -17,18 +18,14 @@ resetBtn.addEventListener('click', () => {
 closeBtn.addEventListener('click', () => {
     modal.classList.toggle('closed')
 })
+window.addEventListener('click', (e) => {
+    if(openModal && e.target !== modalBox) {
+        console.log('you clicked on the modal! GOOD JOB!')
+        modal.classList.toggle('closed')
+        openModal = false;
+    }
+})
 
-//
-const timeElapsed = {
-    hours: 0,
-    minutes: 0,
-    seconds: 55
-}
-
-let running = false;
-
-
-//Event listeners
 document.addEventListener('DOMContentLoaded', () => {
     // console.log('DOM content loaded!')
     timer.innerText = formatTime();
@@ -37,8 +34,16 @@ document.addEventListener('DOMContentLoaded', () => {
 //start timer on click
 timer.addEventListener('click', startTimer)
 
+//State Variables
+const timeElapsed = {
+    hours: 0,
+    minutes: 0,
+    seconds: 0
+}
 
+let running = false;
 let interval = null;
+let openModal = true;
 
 function incrementMinutes() {
     timeElapsed.minutes++
