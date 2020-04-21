@@ -47,6 +47,10 @@ body {
     /* transform: translateY(-200%) */
 }
 
+#task-input {
+   
+}
+
 .modal.closed {
     position: fixed;
     margin-left: 20rem;
@@ -108,8 +112,39 @@ body {
     height: 98%;
     box-shadow: 0 0 3px 2px;
 
+
     transform: translate(0%)
     
+}
+
+.menu-checkbox {
+    width: 2rem;
+    height: 2rem;
+    /* transform: scale(200%) */
+}
+
+#list-container {
+    
+    margin-top: 4.5rem;
+    padding: auto;
+    /* border: 1px solid red; */
+    width: 100%;
+    height: 75%;
+    text-align: center;
+
+    border: 1px solid red;
+}
+
+#list-container ul {
+    display:flex;
+    flex-wrap: wrap;
+}
+
+.menu-list-item {
+    /* color: blue; */
+    margin: 1rem;
+    flex-basis: 100%;
+    list-style: none;
 }
 
 #tomato {

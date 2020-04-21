@@ -13,11 +13,38 @@
             <div class="modal-content">
                 <h2 id="modal-title">Welcome!</h2>
                 <p>What are you working on today?</p>
-                <input type="text">
+                <input id="task-input" type="text">
+                <button>Go!</button>
               </div>
         </div>
     </div>
-    <div id="menu"></div>
+    <div id="menu">
+        <div id="list-container">
+            <ul>
+                <li class="menu-list-item">
+                    <h2>Current Task</h2>
+                    <p id="menu-task-name">Work</p>
+                </li>
+                <li class="menu-list-item">
+                    <h2>Interval</h2>
+                    <p>25 minutes</p>
+                </li>
+                <li class="menu-list-item">
+                    <h2>Break Period</h2>
+                    <p>5 minutes</p>
+                </li>
+                <li class="menu-list-item">
+                    <h2>Checks</h2>
+                    <div class="checks-container">
+                        <input class="menu-checkbox" type="checkbox">
+                        <input class="menu-checkbox" type="checkbox">
+                        <input class="menu-checkbox" type="checkbox">
+                        <input class="menu-checkbox" type="checkbox">
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
     <img id="burger" src="./public/icons/menuburger.svg" alt="">
     <img id="tomato" src="./public/images/tomato.svg" alt="">
     <button id="timer"></button>

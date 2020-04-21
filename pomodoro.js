@@ -5,25 +5,42 @@ const burger = document.querySelector('#burger');
 const resetBtn = document.querySelector('#reset-btn');
 const closeBtn = document.querySelector('#close-btn');
 const modal = document.querySelector('.modal');
-const modalBox = document.querySelector('.modal-box')
+const modalBox = document.querySelector('.modal-box');
+const taskInput = document.querySelector('#task-input');
+const taskTitle = document.querySelector('#menu-task-name');
 
 //Event Listeners
+
+    //menu
 burger.addEventListener('click', () => {
     menu.classList.toggle('open')
 })
 resetBtn.addEventListener('click', () => {
     reset();
-
 })
+    //modal
 closeBtn.addEventListener('click', () => {
     modal.classList.toggle('closed')
 })
+
+//this triggers on submit
+taskInput.addEventListener('change', (e) => {
+    console.log(e.target.value, 'this is the value')
+    task = e.target.value;
+    taskTitle.innerText = task;
+    e.target.value = '';
+})
+
+
 window.addEventListener('click', (e) => {
-    if(openModal && e.target !== modalBox) {
+    if(openModal && e.target === modal) {
         console.log('you clicked on the modal! GOOD JOB!')
         modal.classList.toggle('closed')
         openModal = false;
     }
+    // if(e.target === modal) {
+    //     console.log(e.target, 'this is the modal!')
+    // }
 })
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -44,6 +61,7 @@ const timeElapsed = {
 let running = false;
 let interval = null;
 let openModal = true;
+let task;
 
 function incrementMinutes() {
     timeElapsed.minutes++
