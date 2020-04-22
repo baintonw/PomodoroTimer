@@ -8,6 +8,7 @@ const modal = document.querySelector('.modal');
 const modalBox = document.querySelector('.modal-box');
 const taskInput = document.querySelector('#task-input');
 const taskTitle = document.querySelector('#menu-task-name');
+const audio = document.querySelector('#audio');
 
 //Event Listeners
 
@@ -27,8 +28,9 @@ closeBtn.addEventListener('click', () => {
 taskInput.addEventListener('change', (e) => {
     console.log(e.target.value, 'this is the value')
     task = e.target.value;
-    taskTitle.innerText = task;
+    taskTitle.innerText = task; 
     e.target.value = '';
+    modal.classList.toggle('closed')
 })
 
 
@@ -54,8 +56,8 @@ timer.addEventListener('click', startTimer)
 //State Variables
 const timeElapsed = {
     hours: 0,
-    minutes: 0,
-    seconds: 0
+    minutes: 24,
+    seconds: 55
 }
 
 let running = false;
@@ -63,12 +65,22 @@ let interval = null;
 let openModal = true;
 let task;
 
+function checkTime() {
+    if(timeElapsed.minutes >= 25 && timeElapsed.seconds === 0) {
+
+        timesUp();
+
+    }
+        
+}
+function timesUp() {
+        stopTimer(timeElapsed)
+        audio.play();
+}
+
 function incrementMinutes() {
     timeElapsed.minutes++
-    if(timeElapsed.minutes >= 25 && timeElapsed.seconds === 0) {
-        alert('It has been 25 minutes, please take a 5 minute break.')
-        stopTimer(timeElapsed)
-    }
+    checkTime();    
 }
 
 
@@ -117,6 +129,7 @@ function displayTime() {
         incrementSeconds();
     }
     timer.innerText = formatTime();
+
 
 }
 
