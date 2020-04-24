@@ -7,6 +7,7 @@ const closeBtn = document.querySelector('#close-btn');
 const modal = document.querySelector('.modal');
 const modalBox = document.querySelector('.modal-box');
 const taskInput = document.querySelector('#task-input');
+const submitTask = document.querySelector('#submit-task');
 const taskTitle = document.querySelector('#menu-task-name');
 const audio = document.querySelector('#audio');
 
@@ -19,6 +20,10 @@ burger.addEventListener('click', () => {
 resetBtn.addEventListener('click', () => {
     reset();
 })
+// submitTask.addEventListener('submit', () => {
+//     console.log('you have submitted a task')
+// })
+
     //modal
 closeBtn.addEventListener('click', () => {
     modal.classList.toggle('closed')
@@ -26,11 +31,12 @@ closeBtn.addEventListener('click', () => {
 
 //this triggers on submit
 taskInput.addEventListener('change', (e) => {
-    console.log(e.target.value, 'this is the value')
+    // console.log(e.target.value, 'this is the value')
     task = e.target.value;
     taskTitle.innerText = task; 
     e.target.value = '';
     modal.classList.toggle('closed')
+    startTimer();
 })
 
 
