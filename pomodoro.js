@@ -10,6 +10,9 @@ const taskInput = document.querySelector('#task-input');
 const submitTask = document.querySelector('#submit-task');
 const taskTitle = document.querySelector('#menu-task-name');
 const audio = document.querySelector('#audio');
+const checkboxAudio = document.querySelector('#checkbox-audio');
+
+const checkboxes = document.querySelectorAll('.menu-checkbox');
 
 //Event Listeners
 
@@ -19,6 +22,11 @@ burger.addEventListener('click', () => {
 })
 resetBtn.addEventListener('click', () => {
     reset();
+})
+checkboxes.forEach(box => {
+    box.addEventListener('click', () => {
+        checkboxAudio.play();
+    })
 })
 // submitTask.addEventListener('submit', () => {
 //     console.log('you have submitted a task')
@@ -57,7 +65,7 @@ document.addEventListener('DOMContentLoaded', () => {
 })
 
 //start timer on click
-timer.addEventListener('click', startTimer)
+timer.addEventListener('click', startTimer);
 
 //State Variables
 const timeElapsed = {

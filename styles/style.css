@@ -128,11 +128,11 @@ body {
     margin-top: 4.5rem;
     padding: auto;
     /* border: 1px solid red; */
-    width: 100%;
+    width: 88%;
     height: 75%;
     text-align: center;
 
-    border: 1px solid red;
+    /* border: 1px solid red; */
 }
 
 #list-container ul {
