@@ -26,7 +26,7 @@ resetBtn.addEventListener('click', () => {
 checkboxes.forEach(box => {
     box.addEventListener('click', () => {
         checkboxAudio.play();
-    })
+    });
 })
 // submitTask.addEventListener('submit', () => {
 //     console.log('you have submitted a task')
@@ -62,6 +62,9 @@ window.addEventListener('click', (e) => {
 document.addEventListener('DOMContentLoaded', () => {
     // console.log('DOM content loaded!')
     timer.innerText = formatTime();
+    modalBox.classList.toggle('closed')
+
+
 })
 
 //start timer on click
@@ -91,6 +94,7 @@ function timesUp() {
         stopTimer(timeElapsed)
         audio.play();
         menu.classList.toggle('open')
+        //next have a modal drop down that provides instructions
 }
 
 function incrementMinutes() {

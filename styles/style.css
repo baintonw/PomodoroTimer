@@ -32,7 +32,7 @@ body {
     z-index: 10;
 }
 
-.modal-box {
+.modal-box{
     position: fixed;
     margin-top: 10rem;
     margin-left: 20rem;
@@ -42,6 +42,29 @@ body {
     border: 2px solid black;
     background: white;
     box-shadow: 0 0 2px 1px;
+
+    transform: translateY(-200%);
+
+    /* transition: 1s ease-in-out; */
+    /* text-align: center; */
+
+    /* transform: translateY(-200%) */
+}
+
+.modal-box.closed {
+    position: fixed;
+    margin-top: 10rem;
+    margin-left: 20rem;
+    display: block;
+    width: 50rem;
+    height: 30rem;
+    border: 2px solid black;
+    background: white;
+    box-shadow: 0 0 2px 1px;
+
+    transform: translateY(0%);
+
+    transition: 1s ease-in-out;
     /* text-align: center; */
 
     /* transform: translateY(-200%) */
@@ -65,14 +88,12 @@ body {
     display: none;
 }
 
+
+
 .modal-content {
     margin-top: 7rem;
     /* border: 2px solid red; */
     text-align: center;
-}
-
-#modal-title {
-    /* padding-left: 1rem; */
 }
 
 
