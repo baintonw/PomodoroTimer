@@ -90,6 +90,7 @@ function checkTime() {
 function timesUp() {
         stopTimer(timeElapsed)
         audio.play();
+        menu.classList.toggle('open')
 }
 
 function incrementMinutes() {
