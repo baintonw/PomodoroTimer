@@ -4,8 +4,11 @@ const menu = document.querySelector('#menu');
 const burger = document.querySelector('#burger');
 const resetBtn = document.querySelector('#reset-btn');
 const closeBtn = document.querySelector('#close-btn');
+const longBreakCloseBtn = document.querySelector('#long-break-close-btn');
 const modal = document.querySelector('.modal');
 const modalBox = document.querySelector('.modal-box');
+const longBreakModalBox = document.querySelector('.long-break-modal-box');
+
 const taskInput = document.querySelector('#task-input');
 const submitTask = document.querySelector('#submit-task');
 const taskTitle = document.querySelector('#menu-task-name');
@@ -33,7 +36,15 @@ checkboxes.forEach(box => {
 // })
 
     //modal
+
+//close modal on button press for intro modal
 closeBtn.addEventListener('click', () => {
+    modal.classList.toggle('closed')
+})
+
+//close modal on button press for long break modal
+
+longBreakCloseBtn.addEventListener('click', () => {
     modal.classList.toggle('closed')
 })
 
@@ -71,11 +82,13 @@ document.addEventListener('DOMContentLoaded', () => {
 timer.addEventListener('click', startTimer);
 
 //State Variables
-const timeElapsed = {
+let timeElapsed = {
     hours: 0,
     minutes: 24,
     seconds: 55
 }
+
+let period = 3;
 
 let running = false;
 let interval = null;
@@ -90,10 +103,26 @@ function checkTime() {
     }
         
 }
+
+function checkInterval() {
+    if(period === 3) {
+        period = 0;
+        // alert('big break time!');
+        modalBox.style.display = 'none'
+        longBreakModalBox.style.display = 'block'
+
+        modal.classList.toggle('closed')
+    }
+    ++period;
+    return period;
+}
+
 function timesUp() {
         stopTimer(timeElapsed)
+        checkInterval();
         audio.play();
         menu.classList.toggle('open')
+
         //next have a modal drop down that provides instructions
 }
 
@@ -114,9 +143,14 @@ function incrementSeconds() {
 }
 
 function resetClock() {
-    for(let key in timeElapsed) {
-        timeElapsed[key] = 0;
+    timeElapsed = {
+        hours: 0,
+        minutes: 24,
+        seconds: 55
     }
+    // for(let key in timeElapsed) {
+    //     timeElapsed[key] = 0;
+    // }
     console.log(timeElapsed)
 }
 

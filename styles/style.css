@@ -82,6 +82,20 @@ body {
     font-size: 2rem;
 }
 
+.long-break-modal-box {
+    position: fixed;
+    margin-top: 10rem;
+    margin-left: 20rem;
+    display: block;
+    width: 50rem;
+    height: 30rem;
+    border: 2px solid black;
+    background: white;
+    box-shadow: 0 0 2px 1px;
+
+    /* transform: translateY(-200%); */
+}
+
 /* Menu burger */
 #burger {
     position: fixed;
