@@ -27,9 +27,18 @@ resetBtn.addEventListener('click', () => {
     reset();
 })
 checkboxes.forEach(box => {
+    console.log('is the box checked?', box.checked)
+
+    
+
     box.addEventListener('click', () => {
+        //once you click it box is checked (obviously)
+        box.checked ? checks++ : checks--
+        console.log('checks: ', checks)
         checkboxAudio.play();
     });
+
+
 })
 // submitTask.addEventListener('submit', () => {
 //     console.log('you have submitted a task')
@@ -89,6 +98,7 @@ let timeElapsed = {
 }
 
 let period = 3;
+var checks = 0;
 
 let running = false;
 let interval = null;
