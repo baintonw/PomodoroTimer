@@ -68,7 +68,7 @@ body {
 }
 
 /* Content inside modal box */
-.modal-content {
+.modal__content {
     margin-top: 7rem;
     text-align: center;
 }
