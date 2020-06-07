@@ -40,9 +40,7 @@ checkboxes.forEach(box => {
 
 
 })
-// submitTask.addEventListener('submit', () => {
-//     console.log('you have submitted a task')
-// })
+
 
     //modal
 
@@ -74,9 +72,7 @@ window.addEventListener('click', (e) => {
         modal.classList.toggle('closed')
         openModal = false;
     }
-    // if(e.target === modal) {
-    //     console.log(e.target, 'this is the modal!')
-    // }
+
 })
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -93,8 +89,8 @@ timer.addEventListener('click', startTimer);
 //State Variables
 let timeElapsed = {
     hours: 0,
-    minutes: 24,
-    seconds: 55
+    minutes: 0,
+    seconds: 0,
 }
 
 let period = 3;
@@ -155,8 +151,8 @@ function incrementSeconds() {
 function resetClock() {
     timeElapsed = {
         hours: 0,
-        minutes: 24,
-        seconds: 55
+        minutes: 0,
+        seconds: 0,
     }
     // for(let key in timeElapsed) {
     //     timeElapsed[key] = 0;
