@@ -4,10 +4,12 @@ import tomato from '../assets/tomato.svg';
 //Components
 import Tomato from '../Components/Tomato'
 
+//styles
+import './home.scss'
+
 const Home = () => {
     return(
-        <div>
-            I am the HOME
+        <div className="home-page">
             <Tomato></Tomato>
 
         </div>
