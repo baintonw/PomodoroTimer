@@ -1,0 +1,60 @@
+.menu {
+    position: fixed;
+    top: 0rem;
+    left: 0rem;
+    width: 22rem;
+    height: 100vh;
+    box-shadow: 0 0 3px 2px;
+    transform: translate(-100%);
+    transition: transform .4s ease-in-out;
+    z-index: 5;
+
+    &.open {
+        position: fixed;
+        /* top: .5rem; */
+        /* width: 20rem; */
+        /* height: 98%; */
+        box-shadow: 0 0 3px 2px;
+        transform: translate(0%)
+    }
+
+}
+
+.list-container {
+    
+    // margin-top: 4.5rem;
+    // padding: auto;
+    /* border: 1px solid red; */
+    width: 100%;
+    height: 100%;
+    // text-align: center;
+
+    /* border: 1px solid red; */
+}
+
+/* List inside container in menu */
+.menu-list {
+    background-color: palevioletred;
+    display:flex;
+    height: 100%;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
+
+/* List item */
+.menu-list-item {
+    /* color: blue; */
+    // margin: 3rem;
+    // flex-basis: 100%;
+    list-style: none;
+}
+
+
+
+.menu-checkbox {
+    width: 2rem;
+    height: 2rem;
+    cursor: pointer;
+}

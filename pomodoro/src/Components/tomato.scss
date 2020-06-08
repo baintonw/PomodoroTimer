@@ -1,16 +1,19 @@
 .tomato {
-    width: 61.2%;
-    position: absolute;
-    top: 42%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: inherit;
+    // width: 41.2%;
+    // position: absolute;
+    // top: 42%;
+    // left: 50%;
+    // transform: translate(-50%, -50%);
+    // background-color: inherit;
+
+    display: block;
+    margin: 5rem auto 0 auto;
     
 
     & .tomato-img {
         display: block;
         margin: 0 auto;
-        width: 100%;
+        // width: 100%;
         background-color: inherit;
     }
 
