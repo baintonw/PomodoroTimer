@@ -8,6 +8,7 @@ import Reset from '../Components/Reset'
 
 //Containers
 import Sidebar from '../Containers/Sidebar'
+import Modal from '../Containers/Modal'
 
 
 
@@ -42,6 +43,8 @@ class Home extends React.Component {
                 <Tomato></Tomato>
                 <Timer></Timer>
                 <Reset></Reset>
+                <Modal></Modal>
+
     
             </div>
         )
