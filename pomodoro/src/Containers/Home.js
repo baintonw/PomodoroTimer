@@ -25,14 +25,25 @@ class Home extends React.Component {
 
     state = {
         menuIsOpen: false,
+        modalIsOpen: true,
     };
 
+    //Handling functions
     handleMenuToggle(e) {
         console.log('handle menu toggle has been clicked!')
         this.setState({
             menuIsOpen: !this.state.menuIsOpen,
         })
     };
+
+    handleModalToggle(e) {
+        console.log('modal is closing!')
+        this.setState({
+            modalIsOpen: !this.state.modalIsOpen,
+        })
+    };
+
+    
 
 
     render() {
@@ -43,7 +54,7 @@ class Home extends React.Component {
                 <Tomato></Tomato>
                 <Timer></Timer>
                 <Reset></Reset>
-                <Modal></Modal>
+                <Modal handleModalToggle={(e) => this.handleModalToggle(e)} modalIsOpen={this.state.modalIsOpen}></Modal>
 
     
             </div>

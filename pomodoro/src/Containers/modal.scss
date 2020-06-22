@@ -1,4 +1,7 @@
 .modal-container {
+    &.closed {
+        display: none;
+    }
     position: fixed;
     z-index: 100;
     top: 0;
@@ -24,12 +27,16 @@
         &__heading {
             font-size: 3rem;
             font-weight: 200;
-            margin: 1rem 0 0 0;
+            margin: 3rem 0 0 0;
         }
-
-
     }
 
-
-    
+    &__close-btn {
+        position: absolute;
+        fill: whitesmoke;
+        top: .7rem;
+        right: .7rem;
+        cursor: pointer;
+    }
+   
 }
