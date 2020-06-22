@@ -1,5 +1,9 @@
 .menu {
     position: fixed;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     top: 0rem;
     left: 0rem;
     width: 22rem;
@@ -8,6 +12,7 @@
     transform: translate(-100%);
     transition: transform .4s ease-in-out;
     z-index: 5;
+    
 
     &.open {
         position: fixed;
@@ -20,23 +25,27 @@
 
 }
 
-.list-container {
+// .list-container {
     
-    // margin-top: 4.5rem;
-    // padding: auto;
-    /* border: 1px solid red; */
-    width: 100%;
-    height: 100%;
-    // text-align: center;
+//     // margin-top: 4.5rem;
+//     // padding: auto;
+//     /* border: 1px solid red; */
+//     width: 100%;
+//     height: 100%;
+//     // text-align: center;
 
-    /* border: 1px solid red; */
-}
+//     /* border: 1px solid red; */
+// }
 
 /* List inside container in menu */
 .menu-list {
     background-color: palevioletred;
     display:flex;
-    height: 100%;
+    flex-direction: column;
+    align-items: center;
+    height: 80%;
+    width: 80%;
+    border: 1px solid black;
     flex-direction: column;
     align-items: center;
     justify-content: space-evenly;

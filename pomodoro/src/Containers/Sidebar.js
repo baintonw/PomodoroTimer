@@ -6,7 +6,7 @@ import './sidebar.scss'
 const Sidebar = () => {
     return (
         <div className="menu open">
-            <div className="list-container">
+            
                 {/* flex container */}
                 <ul className="menu-list">
                     {/* item */}
@@ -33,7 +33,7 @@ const Sidebar = () => {
 
                     </li>
                 </ul>
-            </div>
+            
         </div>
         
     )
