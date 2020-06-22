@@ -1,3 +1,5 @@
+
+
 .menu {
     position: fixed;
     display: flex;
@@ -50,20 +52,41 @@
     align-items: center;
     justify-content: space-evenly;
     flex-wrap: wrap;
+
+    &__item {
+        list-style: none;
+        text-align: center;
+    }
+
+    &__heading {
+        // font-size: 20rem;
+        margin-bottom: .8rem;
+    }
 }
 
-/* List item */
-.menu-list-item {
-    /* color: blue; */
-    // margin: 3rem;
-    // flex-basis: 100%;
-    list-style: none;
+.checkbox-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: center;
+    // align-items: ;
+    width: 7rem;
+    height: 7rem;
+    // width: 100%;
+
+
+
+    // border: 1px solid black;
+
+    &__checkbox {
+        display: inline-flex;
+        position: relative;
+        cursor: pointer;
+        width: 40%;
+        height: 40%;
+        
+    }
+
+
 }
 
-
-
-.menu-checkbox {
-    width: 2rem;
-    height: 2rem;
-    cursor: pointer;
-}

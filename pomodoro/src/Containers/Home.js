@@ -14,16 +14,39 @@ import Sidebar from '../Containers/Sidebar'
 //styles
 import './home.scss'
 
-const Home = () => {
-    return(
-        <div className="home-page">
-            <Sidebar></Sidebar>
-            <Tomato></Tomato>
-            <Timer></Timer>
-            <Reset></Reset>
 
-        </div>
-    )
+//svgs
+import CancelCircle from '../assets/cancel-circle.svg'
+
+
+
+class Home extends React.Component {
+
+    state = {
+        menuIsOpen: false,
+    };
+
+    handleMenuToggle(e) {
+        console.log('handle menu toggle has been clicked!')
+        this.setState({
+            menuIsOpen: !this.state.menuIsOpen,
+        })
+    };
+
+
+    render() {
+        return(
+            <div className="home-page">
+                <img onClick={(e) => this.handleMenuToggle(e)} className={this.state.menuIsOpen ? "toggle-btn open" : "toggle-btn"} src={CancelCircle}></img>
+                <Sidebar menuIsOpen={this.state.menuIsOpen}></Sidebar>
+                <Tomato></Tomato>
+                <Timer></Timer>
+                <Reset></Reset>
+    
+            </div>
+        )
+    }
+    
 
 }
 

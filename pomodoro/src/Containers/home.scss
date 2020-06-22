@@ -2,3 +2,11 @@
     width: 100vw;
     height: 80vh;
 }
+
+.toggle-btn {
+    position: fixed;
+    top: 1rem;
+    left: 1.5rem;
+    cursor: pointer;
+    z-index: 10;
+}

@@ -1,39 +1,39 @@
 import React from 'react';
 
+
 //styles
 import './sidebar.scss'
 
-const Sidebar = () => {
+
+const Sidebar = (props) => {
     return (
-        <div className="menu open">
-            
-                {/* flex container */}
+        <div className={props.menuIsOpen ? "menu open" : "menu"}>
                 <ul className="menu-list">
-                    {/* item */}
-                    <li className="menu-list-item">
-                            <h2>Current Task</h2>
+                    <li className="menu-list__item">
+                            <h2 className="menu-list__heading">Current Task</h2>
                             <p className="menu-task-name">Work</p>
                     </li>
-                    <li className="menu-list-item" style={{ paddingRight: `2.9rem`}}>
-                        <h2>Interval</h2>
+                    <li className="menu-list__item">
+                        <h2 className="menu-list__heading">Interval</h2>
                         <p>25 minutes</p>
                     </li>
-                    <li className="menu-list-item">
-                        <h2>Break Period</h2>
+                    <li className="menu-list__item">
+                        <h2 className="menu-list__heading">Break Period</h2>
                         <p>5 minutes</p>
                     </li>
-                    <li className="menu-list-item">
-                        <h2>Checks</h2>
-                        <div className="checks-container">
-                            <input className="menu-checkbox" type="checkbox"/>
-                            <input className="menu-checkbox" type="checkbox"/>
-                            <input className="menu-checkbox" type="checkbox"/>
-                            <input className="menu-checkbox" type="checkbox"/>
+                    <li className="menu-list__item">
+                        <h2 className="menu-list__heading">Checks</h2>
+
+                        <div className="checkbox-container">
+                            <input className="checkbox-container__checkbox" type="checkbox"/>
+                            <input className="checkbox-container__checkbox" type="checkbox"/>
+                            <input className="checkbox-container__checkbox" type="checkbox"/>
+                            <input className="checkbox-container__checkbox" type="checkbox"/>
                         </div>
+
 
                     </li>
                 </ul>
-            
         </div>
         
     )
