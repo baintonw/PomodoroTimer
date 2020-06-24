@@ -29,7 +29,9 @@ const Modal = (props) => {
                     <label name="task">Task</label>   
                     <input 
                         onChange={(e) => props.setTask(e)}
-                        name="task"></input>
+                        name="task"
+                        required
+                        ></input>
                     <input type="submit" value="Go"></input>
                 </form>
             </div>
