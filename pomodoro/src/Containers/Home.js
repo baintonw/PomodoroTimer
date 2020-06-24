@@ -26,6 +26,12 @@ class Home extends React.Component {
     state = {
         menuIsOpen: false,
         modalIsOpen: true,
+        task: null,
+        timeElapsed: {
+            hours: 0,
+            minutes: 0,
+            seconds: 0,
+        },
     };
 
     //Handling functions
@@ -43,6 +49,32 @@ class Home extends React.Component {
         })
     };
 
+    //handle change for task
+    handleTaskSubmit(e) {
+        e.preventDefault();
+        this.setState({
+            modalIsOpen: false,
+        }, () => console.log(this.state));
+    };
+
+    //set task in state
+    setTask(e) {
+        // console.log('this is the event target value: ', e.target.value, '\n setTask was called')
+
+        e.preventDefault();
+        this.setState({
+            [e.target.name]: e.target.value,
+        }, 
+            () => console.log(this.state.task)
+        );
+
+    };
+
+    
+
+    testFunc() {
+        console.log('this is a test function')
+    };
     
 
 
@@ -54,7 +86,13 @@ class Home extends React.Component {
                 <Tomato></Tomato>
                 <Timer></Timer>
                 <Reset></Reset>
-                <Modal handleModalToggle={(e) => this.handleModalToggle(e)} modalIsOpen={this.state.modalIsOpen}></Modal>
+                <Modal 
+                    setTask={(e) => this.setTask(e)}
+                    handleTaskSubmit={(e) => this.handleTaskSubmit(e)}
+                    handleModalToggle={(e) => this.handleModalToggle(e)} 
+                    modalIsOpen={this.state.modalIsOpen}>
+
+                </Modal>
 
     
             </div>

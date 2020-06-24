@@ -26,6 +26,7 @@ burger.addEventListener('click', () => {
 resetBtn.addEventListener('click', () => {
     reset();
 })
+//checkbox audio
 checkboxes.forEach(box => {
     console.log('is the box checked?', box.checked)
 
@@ -93,6 +94,7 @@ let timeElapsed = {
     seconds: 0,
 }
 
+//interval variables
 let period = 3;
 var checks = 0;
 

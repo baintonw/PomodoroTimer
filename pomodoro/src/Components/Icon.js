@@ -5,7 +5,7 @@ import React from "react";
 // import CloseBtn from props.svgPath
 
 const Icon = (props) => {
-    console.log('this is from Icon: props.svgPath', props.svgPath)
+    // console.log('this is from Icon: props.svgPath', props.svgPath)
     return(
         <div>
             {/* {props.svgPath} */}
