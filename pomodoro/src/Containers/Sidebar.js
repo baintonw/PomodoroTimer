@@ -11,7 +11,7 @@ const Sidebar = (props) => {
                 <ul className="menu-list">
                     <li className="menu-list__item">
                             <h2 className="menu-list__heading">Current Task</h2>
-                            <p className="menu-task-name">Work</p>
+    <p className="menu-task-name">{props.task}</p>
                     </li>
                     <li className="menu-list__item">
                         <h2 className="menu-list__heading">Interval</h2>

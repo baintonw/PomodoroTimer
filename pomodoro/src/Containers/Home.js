@@ -82,7 +82,12 @@ class Home extends React.Component {
         return(
             <div className="home-page">
                 <img onClick={(e) => this.handleMenuToggle(e)} className={this.state.menuIsOpen ? "toggle-btn open" : "toggle-btn"} src={CancelCircle}></img>
-                <Sidebar menuIsOpen={this.state.menuIsOpen}></Sidebar>
+                <Sidebar 
+                    menuIsOpen={this.state.menuIsOpen}
+                    task={this.state.task}
+                >
+
+                </Sidebar>
                 <Tomato></Tomato>
                 <Timer></Timer>
                 <Reset></Reset>
