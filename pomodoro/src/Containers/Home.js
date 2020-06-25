@@ -27,9 +27,9 @@ class Home extends React.Component {
         menuIsOpen: false,
         modalIsOpen: true,
         task: null,
-        timeElapsed: {
+        timeLeft: {
             hours: 0,
-            minutes: 0,
+            minutes: 25,
             seconds: 0,
         },
     };
@@ -74,11 +74,8 @@ class Home extends React.Component {
 
     //  checkTime() {
     //     if(timeElapsed.minutes >= 25 && timeElapsed.seconds === 0) {
-    
     //         timesUp();
-    
-    //     }
-            
+    //     }       
     // }
     
     //  checkInterval() {
@@ -204,7 +201,9 @@ class Home extends React.Component {
 
                 </Sidebar>
                 <Tomato></Tomato>
-                <Timer></Timer>
+                <Timer
+                    timeLeft={this.state.timeLeft}
+                ></Timer>
                 <Reset></Reset>
                 <Modal 
                     setTask={(e) => this.setTask(e)}

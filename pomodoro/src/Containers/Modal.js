@@ -24,8 +24,8 @@ const Modal = (props) => {
                 <h2 className="modal-container__content__heading">What are you working on today?</h2>
                 <form onSubmit={props.handleTaskSubmit}>
                     {/* <label>What are you working on today?</label> */}
-                    <label name="task">Project</label>
-                    <input name="task"></input>
+                    {/* <label name="task">Project</label>
+                    <input name="task"></input> */}
                     <label name="task">Task</label>   
                     <input 
                         onChange={(e) => props.setTask(e)}
