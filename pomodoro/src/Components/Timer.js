@@ -20,9 +20,7 @@ const formatTime = (timeLeft) => {
             seconds = '0' + seconds
         }
     
-        return minutes + ':' + seconds
-    
-        
+        return minutes + ':' + seconds    
     }
 
 const Timer = (props) => {
