@@ -69,6 +69,121 @@ class Home extends React.Component {
         );
 
     };
+    ///////////////////////////////
+    //Timing functions
+
+    //  checkTime() {
+    //     if(timeElapsed.minutes >= 25 && timeElapsed.seconds === 0) {
+    
+    //         timesUp();
+    
+    //     }
+            
+    // }
+    
+    //  checkInterval() {
+    //     if(period === 3) {
+    //         period = 0;
+    //         // alert('big break time!');
+    //         modalBox.style.display = 'none'
+    //         longBreakModalBox.style.display = 'block'
+    
+    //         modal.classList.toggle('closed')
+    //     }
+    //     ++period;
+    //     return period;
+    // }
+    
+    //  timesUp() {
+    //         stopTimer(timeElapsed)
+    //         checkInterval();
+    //         audio.play();
+    //         menu.classList.toggle('open')
+    
+    //         //next have a modal drop down that provides instructions
+    // }
+    
+    //  incrementMinutes() {
+    //     timeElapsed.minutes++
+    //     checkTime();    
+    // }
+    
+    
+    //  incrementSeconds() {
+    //     timeElapsed.seconds++;
+    //     if(timeElapsed.seconds === 60) {
+    //         timeElapsed.seconds = 0;
+    //         incrementMinutes(timeElapsed)
+    //     }
+    
+    //     console.log(`${timeElapsed.minutes}: ${timeElapsed.seconds}`)
+    // }
+    
+    //  resetClock() {
+    //     timeElapsed = {
+    //         hours: 0,
+    //         minutes: 0,
+    //         seconds: 0,
+    //     }
+    //     // for(let key in timeElapsed) {
+    //     //     timeElapsed[key] = 0;
+    //     // }
+    //     console.log(timeElapsed)
+    // }
+    
+    //  formatTime() {
+    //     //should take time elapsed timeElapsed and format it as a string
+    //     //mm:ss
+    
+    //     let minutes = ''
+    //     let seconds = ''
+    
+    //     minutes = timeElapsed.minutes + ''
+    //     seconds = timeElapsed.seconds + ''
+        
+    //     if(minutes.length < 2) {
+    //         minutes = '0' + minutes
+    //     }
+    //     if(seconds.length < 2) {
+    //         seconds = '0' + seconds
+    //     }
+    
+    //     return minutes + ':' + seconds
+    
+        
+    // }
+    
+    
+    //  displayTime() {
+    //     if(interval) {
+    //         incrementSeconds();
+    //     }
+    //     timer.innerText = formatTime();
+    
+    
+    // }
+    
+    //  startTimer() {
+    
+    //     if(!interval) {
+    //         interval = setInterval(displayTime, 1000); 
+    //     } else {
+    //         stopTimer()
+    //     }
+    // }
+    
+    //  stopTimer() {
+    //     // resetClock(timeElapsed)
+    
+    //     clearInterval(interval);
+    //     interval = null;
+    // }
+    
+    //  reset() {
+    //     stopTimer();
+    //     resetClock();
+    //     displayTime();
+    // }
 
     
 
