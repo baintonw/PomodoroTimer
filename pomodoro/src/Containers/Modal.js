@@ -22,7 +22,13 @@ const Modal = (props) => {
                     <Icon  svgPath={path}></Icon>
                 </div>
                 <h2 className="modal-container__content__heading">What are you working on today?</h2>
-                <form onSubmit={props.handleTaskSubmit}>
+                <form onSubmit={(e) =>
+                        {
+                             props.handleTaskSubmit(e);
+                             props.handleMenuToggle(e);
+                            
+                        }
+                    }>
                     {/* <label>What are you working on today?</label> */}
                     {/* <label name="task">Project</label>
                     <input name="task"></input> */}

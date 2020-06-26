@@ -49,6 +49,8 @@ class Home extends React.Component {
         })
     };
 
+
+
     //handle change for task
     handleTaskSubmit(e) {
         e.preventDefault();
@@ -69,6 +71,9 @@ class Home extends React.Component {
         );
 
     };
+
+
+
     ///////////////////////////////
     //Timing functions
 
@@ -128,29 +133,6 @@ class Home extends React.Component {
     //     console.log(timeElapsed)
     // }
     
-    //  formatTime() {
-    //     //should take time elapsed timeElapsed and format it as a string
-    //     //mm:ss
-    
-    //     let minutes = ''
-    //     let seconds = ''
-    
-    //     minutes = timeElapsed.minutes + ''
-    //     seconds = timeElapsed.seconds + ''
-        
-    //     if(minutes.length < 2) {
-    //         minutes = '0' + minutes
-    //     }
-    //     if(seconds.length < 2) {
-    //         seconds = '0' + seconds
-    //     }
-    
-    //     return minutes + ':' + seconds
-    
-        
-    // }
-    
-    
     //  displayTime() {
     //     if(interval) {
     //         incrementSeconds();
@@ -208,6 +190,7 @@ class Home extends React.Component {
                 <Modal 
                     setTask={(e) => this.setTask(e)}
                     handleTaskSubmit={(e) => this.handleTaskSubmit(e)}
+                    handleMenuToggle={(e) => this.handleMenuToggle(e)}
                     handleModalToggle={(e) => this.handleModalToggle(e)} 
                     modalIsOpen={this.state.modalIsOpen}>
 
