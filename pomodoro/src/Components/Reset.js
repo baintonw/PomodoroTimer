@@ -3,9 +3,9 @@ import React from 'react';
 //styles
 import './reset.scss';
 
-const Reset = () => {
+const Reset = (props) => {
     return(
-        <button className="reset-btn">Reset</button>
+        <button onClick={(e) => props.resetClock(e)} className="reset-btn">Reset</button>
     )
 };
 

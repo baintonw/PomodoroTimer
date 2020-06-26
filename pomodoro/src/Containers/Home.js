@@ -161,21 +161,24 @@ class Home extends React.Component {
                 timeLeft: {
                     minutes: --this.state.timeLeft.minutes,  
                 }
-
             }, () => console.log('timeLeft: ', timeLeft, 'minutes: ', this.state.timeLeft.minutes))
-            
         };
     
-     resetClock() {
-        this.state.timeLeft = {
-            hours: 0,
-            minutes: 25,
-            seconds: 0,
-        }
-        for(let key in this.state.timeLeft) {
-            this.state.timeLeft[key] = 0;
-        }
-        console.log(this.state.timeLeft)
+     resetClock(e) {
+
+        console.log(`%cRESETTING!`)
+
+         e.preventDefault()
+
+         this.setState({
+            ...this.state,
+            timeLeft: {
+                hours: 0,
+                minutes: 25,
+                seconds: 0,
+            }
+         })
+         
     }
     
     //  displayTime() {
@@ -231,14 +234,22 @@ class Home extends React.Component {
                 <Timer
                     timeLeft={this.state.timeLeft}
                 ></Timer>
-                <Reset></Reset>
+                <Reset
+                    resetClock={(e) => this.resetClock(e)}
+                ></Reset>
                 <Modal 
 
                     setTask={(e) => this.setTask(e)}
+
                     handleTaskSubmit={(e) => this.handleTaskSubmit(e)}
+
                     handleMenuToggle={(e) => this.handleMenuToggle(e)}
+
                     handleModalToggle={(e) => this.handleModalToggle(e)} 
+
                     modalIsOpen={this.state.modalIsOpen}>
+
+
 
                 </Modal>
 
