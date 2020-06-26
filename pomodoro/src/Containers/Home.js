@@ -30,7 +30,7 @@ class Home extends React.Component {
         timeLeft: {
             hours: 0,
             minutes: 25,
-            seconds: 0,
+            seconds: 5,
         },
     };
 
@@ -120,6 +120,54 @@ class Home extends React.Component {
     
     //     console.log(`${timeElapsed.minutes}: ${timeElapsed.seconds}`)
     // }
+
+        decrementSeconds() {
+            let { timeLeft } = this.state
+            let { seconds, minutes } = timeLeft;
+            console.log('timeLeft: ', timeLeft, 'seconds, minutes: ', seconds, minutes)
+
+            if(seconds > 0) {
+
+                this.setState({
+                    // ...this.state,
+                    timeLeft: {
+                        ...this.state.timeLeft,
+                        seconds: --seconds,
+                    }
+
+                }, () => console.log(this.state.timeLeft))
+
+            } else if(seconds === 0) {
+                // console.log(this.state.timeLeft)
+                this.decrementMinutes();
+
+                this.setState({
+                    // ...this.state,
+                    timeLeft: {
+                        // minutes: this.,
+                        ...this.state.timeLeft,
+                        seconds: 59,
+                    }
+
+                });
+            };
+            
+        };
+
+        decrementMinutes() {
+            console.log('decrementing minutes!')
+            let { timeLeft } = this.state;
+
+            this.setState({
+                ...this.state,
+
+                timeLeft: {
+                    minutes: --this.state.timeLeft.minutes,  
+                }
+
+            }, () => console.log('timeLeft: ', timeLeft, 'minutes: ', this.state.timeLeft.minutes))
+            
+        };
     
     //  resetClock() {
     //     timeElapsed = {
@@ -175,6 +223,7 @@ class Home extends React.Component {
     render() {
         return(
             <div className="home-page">
+                <button onClick={() => this.decrementSeconds()}>This button is a test button for functions</button>
                 <img onClick={(e) => this.handleMenuToggle(e)} className={this.state.menuIsOpen ? "toggle-btn open" : "toggle-btn"} src={CancelCircle}></img>
                 <Sidebar 
                     menuIsOpen={this.state.menuIsOpen}
@@ -188,6 +237,7 @@ class Home extends React.Component {
                 ></Timer>
                 <Reset></Reset>
                 <Modal 
+
                     setTask={(e) => this.setTask(e)}
                     handleTaskSubmit={(e) => this.handleTaskSubmit(e)}
                     handleMenuToggle={(e) => this.handleMenuToggle(e)}
