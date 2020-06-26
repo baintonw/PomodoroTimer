@@ -138,13 +138,10 @@ class Home extends React.Component {
                 }, () => console.log(this.state.timeLeft))
 
             } else if(seconds === 0) {
-                // console.log(this.state.timeLeft)
                 this.decrementMinutes();
 
                 this.setState({
-                    // ...this.state,
                     timeLeft: {
-                        // minutes: this.,
                         ...this.state.timeLeft,
                         seconds: 59,
                     }
@@ -169,24 +166,23 @@ class Home extends React.Component {
             
         };
     
-    //  resetClock() {
-    //     timeElapsed = {
-    //         hours: 0,
-    //         minutes: 0,
-    //         seconds: 0,
-    //     }
-    //     // for(let key in timeElapsed) {
-    //     //     timeElapsed[key] = 0;
-    //     // }
-    //     console.log(timeElapsed)
-    // }
+     resetClock() {
+        this.state.timeLeft = {
+            hours: 0,
+            minutes: 25,
+            seconds: 0,
+        }
+        for(let key in this.state.timeLeft) {
+            this.state.timeLeft[key] = 0;
+        }
+        console.log(this.state.timeLeft)
+    }
     
     //  displayTime() {
     //     if(interval) {
     //         incrementSeconds();
     //     }
     //     timer.innerText = formatTime();
-    
     
     // }
     
