@@ -32,7 +32,22 @@ class Home extends React.Component {
             minutes: 25,
             seconds: 5,
         },
+        countDown: null,
+        counter: 0,
     };
+
+    //LIFECYCLE METHODS
+
+    componentDidMount() {
+        console.log('the component has mounted!')
+        
+    };
+
+    componentWillUnmount() {
+        console.log('THE COMPONENT HAS UNMOUNTED')
+        clearInterval(this.timerID);
+    };
+
 
     //Handling functions
     handleMenuToggle(e) {
@@ -71,6 +86,8 @@ class Home extends React.Component {
         );
 
     };
+
+
 
 
 
@@ -121,7 +138,8 @@ class Home extends React.Component {
     //     console.log(`${timeElapsed.minutes}: ${timeElapsed.seconds}`)
     // }
 
-        decrementSeconds() {
+    decrementSeconds() {
+        console.log('decrement Seconds called!')
             let { timeLeft } = this.state
             let { seconds, minutes } = timeLeft;
             console.log('timeLeft: ', timeLeft, 'seconds, minutes: ', seconds, minutes)
@@ -149,22 +167,44 @@ class Home extends React.Component {
                 });
             };
             
-        };
+    };
 
-        decrementMinutes() {
-            console.log('decrementing minutes!')
-            let { timeLeft } = this.state;
+    decrementMinutes() {
+        console.log('decrementing minutes!')
+        let { timeLeft } = this.state;
 
-            this.setState({
-                ...this.state,
+        this.setState({
+            ...this.state,
 
-                timeLeft: {
-                    minutes: --this.state.timeLeft.minutes,  
-                }
-            }, () => console.log('timeLeft: ', timeLeft, 'minutes: ', this.state.timeLeft.minutes))
-        };
+            timeLeft: {
+                minutes: --this.state.timeLeft.minutes,  
+            }
+        }, () => console.log('timeLeft: ', timeLeft, 'minutes: ', this.state.timeLeft.minutes))
+    };
+
+    tick() {
+        console.log('tick! tock!')
+        this.setState({
+            counter: this.state.counter + 1,
+        })
+    }
+
+    startTimer() {
+        console.log('AND THEY ARE OFF!');
+    //    const countDown = setInterval(this.decrementSeconds, 1000);
+        this.timer = setInterval(this.tick, 1000)
+        
+    };
+
+    stopTimer() {
+        console.log('timer stopping!')
+        clearInterval(this.timer)
+        
+    };
+
+
     
-     resetClock(e) {
+    resetClock(e) {
 
         console.log(`%cRESETTING!`)
 
@@ -228,13 +268,18 @@ class Home extends React.Component {
                     menuIsOpen={this.state.menuIsOpen}
                     task={this.state.task}
                 >
-
                 </Sidebar>
+                <h1 style={{ margin: `0 auto`, color: `tomato`,}}>Counter: {this.state.counter}</h1>
+                
                 <Tomato></Tomato>
                 <Timer
+                    startTimer={this.startTimer}
+                    stopTimer={this.stopTimer}
+                    interval={this.state.interval}
                     timeLeft={this.state.timeLeft}
                 ></Timer>
                 <Reset
+                    
                     resetClock={(e) => this.resetClock(e)}
                 ></Reset>
                 <Modal 

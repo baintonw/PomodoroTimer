@@ -26,7 +26,7 @@ const formatTime = (timeLeft) => {
 const Timer = (props) => {
     console.log('the timer props: ', props)
     return (
-    <button className="timer">{formatTime(props.timeLeft)}</button>
+    <button onClick={(e) => props.startTimer(e)} className="timer">{formatTime(props.timeLeft)}</button>
     )
 };
 
