@@ -45,7 +45,6 @@ class Home extends React.Component {
 
     componentWillUnmount() {
         console.log('THE COMPONENT HAS UNMOUNTED')
-        clearInterval(this.timerID);
     };
 
 
@@ -86,57 +85,6 @@ class Home extends React.Component {
         );
 
     };
-
-
-
-
-
-    ///////////////////////////////
-    //Timing functions
-
-    //  checkTime() {
-    //     if(timeElapsed.minutes >= 25 && timeElapsed.seconds === 0) {
-    //         timesUp();
-    //     }       
-    // }
-    
-    //  checkInterval() {
-    //     if(period === 3) {
-    //         period = 0;
-    //         // alert('big break time!');
-    //         modalBox.style.display = 'none'
-    //         longBreakModalBox.style.display = 'block'
-    
-    //         modal.classList.toggle('closed')
-    //     }
-    //     ++period;
-    //     return period;
-    // }
-    
-    //  timesUp() {
-    //         stopTimer(timeElapsed)
-    //         checkInterval();
-    //         audio.play();
-    //         menu.classList.toggle('open')
-    
-    //         //next have a modal drop down that provides instructions
-    // }
-    
-    //  incrementMinutes() {
-    //     timeElapsed.minutes++
-    //     checkTime();    
-    // }
-    
-    
-    //  incrementSeconds() {
-    //     timeElapsed.seconds++;
-    //     if(timeElapsed.seconds === 60) {
-    //         timeElapsed.seconds = 0;
-    //         incrementMinutes(timeElapsed)
-    //     }
-    
-    //     console.log(`${timeElapsed.minutes}: ${timeElapsed.seconds}`)
-    // }
 
     decrementSeconds() {
         console.log('decrement Seconds called!')
@@ -181,9 +129,12 @@ class Home extends React.Component {
             }
         }, () => console.log('timeLeft: ', timeLeft, 'minutes: ', this.state.timeLeft.minutes))
     };
+    // RIGHT NOW I AM TRYING TO START A COUNTER THAT INCREMENTS EVERY SECOND ON BUTTON PRESS
+    // AM GETTING OBJECT IS NOT EXTENSIBLE ERROR
 
     tick() {
         console.log('tick! tock!')
+
         this.setState({
             counter: this.state.counter + 1,
         })
@@ -191,17 +142,15 @@ class Home extends React.Component {
 
     startTimer() {
         console.log('AND THEY ARE OFF!');
-    //    const countDown = setInterval(this.decrementSeconds, 1000);
-        this.timer = setInterval(this.tick, 1000)
+        this.timerID = setInterval(() => {return this.tick()}, 1000)
         
     };
 
     stopTimer() {
         console.log('timer stopping!')
-        clearInterval(this.timer)
+        clearInterval(this.timerID)
         
     };
-
 
     
     resetClock(e) {
@@ -221,43 +170,11 @@ class Home extends React.Component {
          
     }
     
-    //  displayTime() {
-    //     if(interval) {
-    //         incrementSeconds();
-    //     }
-    //     timer.innerText = formatTime();
-    
-    // }
-    
-    //  startTimer() {
-    
-    //     if(!interval) {
-    //         interval = setInterval(displayTime, 1000); 
-    //     } else {
-    //         stopTimer()
-    //     }
-    // }
-    
-    //  stopTimer() {
-    //     // resetClock(timeElapsed)
-    
-    //     clearInterval(interval);
-    //     interval = null;
-    // }
-    
-    //  reset() {
-    //     stopTimer();
-    //     resetClock();
-    //     displayTime();
-    // }
-
-    
 
     testFunc() {
         console.log('this is a test function')
     };
     
-
 
     render() {
         return(
@@ -269,11 +186,11 @@ class Home extends React.Component {
                     task={this.state.task}
                 >
                 </Sidebar>
-                <h1 style={{ margin: `0 auto`, color: `tomato`,}}>Counter: {this.state.counter}</h1>
+                <h1 onClick={(e) => this.tick(e)} style={{ margin: `0 auto`, color: `tomato`,}}>Counter: {this.state.counter}</h1>
                 
                 <Tomato></Tomato>
                 <Timer
-                    startTimer={this.startTimer}
+                    startTimer={(e) => this.startTimer(e)}
                     stopTimer={this.stopTimer}
                     interval={this.state.interval}
                     timeLeft={this.state.timeLeft}
