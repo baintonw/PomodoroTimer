@@ -134,7 +134,6 @@ class Home extends React.Component {
 
     tick() {
         console.log('tick! tock!')
-
         this.setState({
             counter: this.state.counter + 1,
         })
@@ -142,7 +141,7 @@ class Home extends React.Component {
 
     startTimer() {
         console.log('AND THEY ARE OFF!');
-        this.timerID = setInterval(() => {return this.tick()}, 1000)
+        this.timerID = setInterval(() => {this.decrementSeconds()}, 1000)
         
     };
 
