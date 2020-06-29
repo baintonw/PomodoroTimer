@@ -26,14 +26,16 @@ class Home extends React.Component {
     state = {
         menuIsOpen: false,
         modalIsOpen: true,
-        task: null,
+        task: '',
         timeLeft: {
             hours: 0,
             minutes: 25,
             seconds: 5,
         },
+        running: false,
         countDown: null,
         counter: 0,
+
     };
 
     //LIFECYCLE METHODS
@@ -63,8 +65,6 @@ class Home extends React.Component {
         })
     };
 
-
-
     //handle change for task
     handleTaskSubmit(e) {
         e.preventDefault();
@@ -75,8 +75,6 @@ class Home extends React.Component {
 
     //set task in state
     setTask(e) {
-        // console.log('this is the event target value: ', e.target.value, '\n setTask was called')
-
         e.preventDefault();
         this.setState({
             [e.target.name]: e.target.value,
@@ -86,14 +84,9 @@ class Home extends React.Component {
 
     };
 
-    decrementSeconds() {
-        console.log('decrement Seconds called!')
-            let { timeLeft } = this.state
-            let { seconds, minutes } = timeLeft;
-            console.log('timeLeft: ', timeLeft, 'seconds, minutes: ', seconds, minutes)
-
+    /*
+    console.log('timeLeft: ', timeLeft, 'seconds, minutes: ', seconds, minutes)
             if(seconds > 0) {
-
                 this.setState({
                     // ...this.state,
                     timeLeft: {
@@ -113,50 +106,75 @@ class Home extends React.Component {
                     }
 
                 });
-            };
+            };  
+     */
+
+     
+    //Decreases seconds in state by one
+    decrementSeconds() {
+        console.log('decrement Seconds called!')
+            let { timeLeft } = this.state
+            let { seconds, minutes } = timeLeft;
+            this.setState({
+                timeLeft: {
+                    ...this.state.timeLeft,
+                    seconds: this.state.timeLeft.seconds - 1,
+                }
+            }, () => console.log(this.state.timeLeft.seconds))
             
     };
 
     decrementMinutes() {
         console.log('decrementing minutes!')
         let { timeLeft } = this.state;
-
         this.setState({
             ...this.state,
-
             timeLeft: {
                 minutes: --this.state.timeLeft.minutes,  
             }
         }, () => console.log('timeLeft: ', timeLeft, 'minutes: ', this.state.timeLeft.minutes))
     };
-    // RIGHT NOW I AM TRYING TO START A COUNTER THAT INCREMENTS EVERY SECOND ON BUTTON PRESS
-    // AM GETTING OBJECT IS NOT EXTENSIBLE ERROR
 
-    tick() {
-        console.log('tick! tock!')
-        this.setState({
-            counter: this.state.counter + 1,
-        })
+    count() {
+        let { hours, minutes, seconds } = this.state.timeLeft;
+        if(seconds > 0) {
+            this.decrementSeconds();
+        } else if(seconds === 0) {
+            this.decrementMinutes();
+            this.setState({
+                timeLeft: {
+                    ...this.state.timeLeft,
+                    seconds: 59,
+                }
+            });
+        };
     }
+    
 
     startTimer() {
         console.log('AND THEY ARE OFF!');
-        this.timerID = setInterval(() => {this.decrementSeconds()}, 1000)
+        this.timerID = setInterval(() => {this.count()}, 1000)
+        console.log('timerID!', this.timerID)
+
+        this.setState({
+            running: true,
+        })
         
     };
 
     stopTimer() {
         console.log('timer stopping!')
-        clearInterval(this.timerID)
-        
+        clearInterval(this.timerID)        
+        this.setState({
+            running: false,
+        })
     };
 
     
     resetClock(e) {
-
-        console.log(`%cRESETTING!`)
-
+        console.log(`%c RESETTING!`, `background:#ccc; color: tomato; font-size: 3rem`)
          e.preventDefault()
+         this.stopTimer();
 
          this.setState({
             ...this.state,
@@ -189,9 +207,11 @@ class Home extends React.Component {
                 
                 <Tomato></Tomato>
                 <Timer
+
+                    interval={this.timerID}
+                    running={this.state.running}
                     startTimer={(e) => this.startTimer(e)}
-                    stopTimer={this.stopTimer}
-                    interval={this.state.interval}
+                    stopTimer={(e) => this.stopTimer(e)}
                     timeLeft={this.state.timeLeft}
                 ></Timer>
                 <Reset
