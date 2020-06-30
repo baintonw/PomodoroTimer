@@ -81,34 +81,7 @@ class Home extends React.Component {
         }, 
             () => console.log(this.state.task)
         );
-
     };
-
-    /*
-    console.log('timeLeft: ', timeLeft, 'seconds, minutes: ', seconds, minutes)
-            if(seconds > 0) {
-                this.setState({
-                    // ...this.state,
-                    timeLeft: {
-                        ...this.state.timeLeft,
-                        seconds: --seconds,
-                    }
-
-                }, () => console.log(this.state.timeLeft))
-
-            } else if(seconds === 0) {
-                this.decrementMinutes();
-
-                this.setState({
-                    timeLeft: {
-                        ...this.state.timeLeft,
-                        seconds: 59,
-                    }
-
-                });
-            };  
-     */
-
      
     //Decreases seconds in state by one
     decrementSeconds() {
@@ -125,7 +98,6 @@ class Home extends React.Component {
     };
 
     decrementMinutes() {
-        console.log('decrementing minutes!')
         let { timeLeft } = this.state;
         this.setState({
             ...this.state,
@@ -152,7 +124,6 @@ class Home extends React.Component {
     
 
     startTimer() {
-        console.log('AND THEY ARE OFF!');
         this.timerID = setInterval(() => {this.count()}, 1000)
         console.log('timerID!', this.timerID)
 
@@ -163,7 +134,6 @@ class Home extends React.Component {
     };
 
     stopTimer() {
-        console.log('timer stopping!')
         clearInterval(this.timerID)        
         this.setState({
             running: false,
@@ -172,7 +142,6 @@ class Home extends React.Component {
 
     
     resetClock(e) {
-        console.log(`%c RESETTING!`, `background:#ccc; color: tomato; font-size: 3rem`)
          e.preventDefault()
          this.stopTimer();
 
