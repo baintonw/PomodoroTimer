@@ -29,7 +29,7 @@ class Home extends React.Component {
         task: '',
         timeLeft: {
             hours: 0,
-            minutes: 25,
+            minutes: 0,
             seconds: 5,
         },
         running: false,
@@ -107,8 +107,22 @@ class Home extends React.Component {
         }, () => console.log('timeLeft: ', timeLeft, 'minutes: ', this.state.timeLeft.minutes))
     };
 
+    timesUp() {
+        this.stopTimer();
+        // alert('Take a quick break!')
+        let newTask = prompt('What are you working on next?');
+        
+        this.setState({
+            task: newTask
+        }, () => {console.log('this is the new task in state: ', this.state.task)})
+    };
+
     count() {
         let { hours, minutes, seconds } = this.state.timeLeft;
+        if(hours === 0 && minutes === 0 && seconds === 0) {
+            this.timesUp();
+            return
+        };
         if(seconds > 0) {
             this.decrementSeconds();
         } else if(seconds === 0) {
@@ -165,15 +179,12 @@ class Home extends React.Component {
     render() {
         return(
             <div className="home-page">
-                <button onClick={() => this.decrementSeconds()}>This button is a test button for functions</button>
                 <img onClick={(e) => this.handleMenuToggle(e)} className={this.state.menuIsOpen ? "toggle-btn open" : "toggle-btn"} src={CancelCircle}></img>
                 <Sidebar 
                     menuIsOpen={this.state.menuIsOpen}
                     task={this.state.task}
                 >
-                </Sidebar>
-                <h1 onClick={(e) => this.tick(e)} style={{ margin: `0 auto`, color: `tomato`,}}>Counter: {this.state.counter}</h1>
-                
+                </Sidebar>                
                 <Tomato></Tomato>
                 <Timer
 
