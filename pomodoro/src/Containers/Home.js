@@ -1,10 +1,12 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import tomato from '../assets/tomato.svg';
 
 //Components
 import Tomato from '../Components/Tomato'
 import Timer from '../Components/Timer'
 import Reset from '../Components/Reset'
+import Audio from '../Components/Audio'
 
 //Containers
 import Sidebar from '../Containers/Sidebar'
@@ -38,6 +40,9 @@ class Home extends React.Component {
         running: false,
         countDown: null,
         counter: 0,
+        audio: {
+            playing: false,
+        },
 
     };
 
@@ -172,6 +177,16 @@ class Home extends React.Component {
          })
          
     }
+
+    //Audio
+    handleAudio() {
+        // e.preventDefault();
+        this.setState({
+            audio: {
+                playing: !this.state.audio.playing
+            }
+        }, () => {console.log('playing changed in state: ', this.state.audio)})
+    }
     
 
     testFunc() {
@@ -209,9 +224,14 @@ class Home extends React.Component {
                     handleModalToggle={(e) => this.handleModalToggle(e)} 
                     modalIsOpen={this.state.modalIsOpen}>
                 </Modal>
-                <audio src={doorbell} type="audio/mp3" controls></audio>
-
-    
+                {/* <div id="audio-div">
+                    {this.handleAudio(doorbell)}
+                </div> */}
+                {/* <Audio playing={true} src={doorbell}></Audio> */}
+                <button onClick={() => this.handleAudio()}>Testing audio!</button>
+                <audio src={this.state.audio.playing ? doorbell : null} type="audio/mp3" controls autoPlay>
+                    
+                </audio>
             </div>
         )
     }
