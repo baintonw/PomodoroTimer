@@ -11,6 +11,9 @@ import Sidebar from '../Containers/Sidebar'
 import Modal from '../Containers/Modal'
 
 
+//Audio
+import doorbell from '../assets/audio/doorbell.mp3'
+
 
 //styles
 import './home.scss'
@@ -177,6 +180,7 @@ class Home extends React.Component {
     
 
     render() {
+        console.log(doorbell)
         return(
             <div className="home-page">
                 <img onClick={(e) => this.handleMenuToggle(e)} className={this.state.menuIsOpen ? "toggle-btn open" : "toggle-btn"} src={CancelCircle}></img>
@@ -199,20 +203,13 @@ class Home extends React.Component {
                     resetClock={(e) => this.resetClock(e)}
                 ></Reset>
                 <Modal 
-
                     setTask={(e) => this.setTask(e)}
-
                     handleTaskSubmit={(e) => this.handleTaskSubmit(e)}
-
                     handleMenuToggle={(e) => this.handleMenuToggle(e)}
-
                     handleModalToggle={(e) => this.handleModalToggle(e)} 
-
                     modalIsOpen={this.state.modalIsOpen}>
-
-
-
                 </Modal>
+                <audio src={doorbell} type="audio/mp3" controls></audio>
 
     
             </div>
