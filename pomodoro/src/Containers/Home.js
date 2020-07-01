@@ -115,19 +115,27 @@ class Home extends React.Component {
         }, () => console.log('timeLeft: ', timeLeft, 'minutes: ', this.state.timeLeft.minutes))
     };
 
+    newTask() {
+        let newTask = prompt('What are you working on next?', this.state.task);
+
+    };
+
     timesUp() {
+        this.playSound();
         this.stopTimer();
-        // alert('Take a quick break!')
-        let newTask = prompt('What are you working on next?');
+
         
-        this.setState({
-            task: newTask
-        }, () => {console.log('this is the new task in state: ', this.state.task)})
+
+    
+        // this.setState({
+        //     task: 'newTask'
+        // }, () => {console.log('this is the new task in state: ', this.state.task)})
     };
 
     count() {
         let { hours, minutes, seconds } = this.state.timeLeft;
         if(hours === 0 && minutes === 0 && seconds === 0) {
+            // this.playSound();
             this.timesUp();
             return
         };
@@ -179,15 +187,15 @@ class Home extends React.Component {
     }
 
     //Audio
-    handleAudio() {
+    playSound() {
         // e.preventDefault();
         this.setState({
             audio: {
+                src: doorbell,
                 playing: !this.state.audio.playing
             }
         }, () => {console.log('playing changed in state: ', this.state.audio)})
     }
-    
 
     testFunc() {
         console.log('this is a test function')
@@ -195,7 +203,7 @@ class Home extends React.Component {
     
 
     render() {
-        console.log(doorbell)
+        console.log(this.state)
         return(
             <div className="home-page">
                 <img onClick={(e) => this.handleMenuToggle(e)} className={this.state.menuIsOpen ? "toggle-btn open" : "toggle-btn"} src={CancelCircle}></img>
@@ -228,9 +236,8 @@ class Home extends React.Component {
                     {this.handleAudio(doorbell)}
                 </div> */}
                 {/* <Audio playing={true} src={doorbell}></Audio> */}
-                <button onClick={() => this.handleAudio()}>Testing audio!</button>
-                <audio src={this.state.audio.playing ? doorbell : null} type="audio/mp3" controls autoPlay>
-                    
+                <button onClick={() => this.playSound()}>Testing audio!</button>
+                <audio src={this.state.audio.playing ? this.state.audio.src : null} type="audio/mp3" controls autoPlay>
                 </audio>
             </div>
         )
