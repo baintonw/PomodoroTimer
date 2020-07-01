@@ -236,7 +236,6 @@ class Home extends React.Component {
                     {this.handleAudio(doorbell)}
                 </div> */}
                 {/* <Audio playing={true} src={doorbell}></Audio> */}
-                <button onClick={() => this.playSound()}>Testing audio!</button>
                 <audio src={this.state.audio.playing ? this.state.audio.src : null} type="audio/mp3" controls autoPlay>
                 </audio>
             </div>
