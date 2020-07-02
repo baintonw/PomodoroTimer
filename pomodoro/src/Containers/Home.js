@@ -225,7 +225,8 @@ class Home extends React.Component {
                     
                     resetClock={(e) => this.resetClock(e)}
                 ></Reset>
-                <Modal 
+                <Modal
+                    task={this.state.task} 
                     setTask={(e) => this.setTask(e)}
                     handleTaskSubmit={(e) => this.handleTaskSubmit(e)}
                     handleMenuToggle={(e) => this.handleMenuToggle(e)}

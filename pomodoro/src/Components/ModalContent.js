@@ -24,7 +24,7 @@ const ModalContent = (props) => {
                         }
                     }>
                     
-                    <label className="modal-container__content__label" name="task">Please pick a task: </label>   
+                    <label className="modal-container__content__label" name="task">Please pick a task: </label>  
                     <input className="modal-container__content__input"
                         onChange={(e) => props.setTask(e)}
                         name="task"

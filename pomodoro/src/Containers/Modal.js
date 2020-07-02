@@ -19,6 +19,10 @@ const Modal = (props) => {
     return(
         <div className={props.modalIsOpen ? "modal-container" : "modal-container closed"}>
             <ModalContent
+                task={props.task}
+                handleTaskSubmit={props.handleTaskSubmit}
+                handleMenuToggle={props.handleMenuToggle}
+                setTask={props.setTask}
                 handleModalToggle={props.handleModalToggle}
             ></ModalContent>
         </div>
