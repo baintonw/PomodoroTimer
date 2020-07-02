@@ -14,17 +14,28 @@ const handleClick = (e) => {
     console.log('you clicked it!')
 }
 
+const renderModalContent = (props) => {
+    if(props.break) {
+        return null
+    } else {
+        return (
+            <ModalContent
+                    break={props.break}
+                    task={props.task}
+                    handleTaskSubmit={props.handleTaskSubmit}
+                    handleMenuToggle={props.handleMenuToggle}
+                    setTask={props.setTask}
+                    handleModalToggle={props.handleModalToggle}
+            ></ModalContent>
+        )
+    } 
+};
+
 const Modal = (props) => {
-    // console.log('this is the props: ', props)
+    console.log('this is the props: ', props)
     return(
         <div className={props.modalIsOpen ? "modal-container" : "modal-container closed"}>
-            <ModalContent
-                task={props.task}
-                handleTaskSubmit={props.handleTaskSubmit}
-                handleMenuToggle={props.handleMenuToggle}
-                setTask={props.setTask}
-                handleModalToggle={props.handleModalToggle}
-            ></ModalContent>
+            {renderModalContent(props)}
         </div>
     )
 };

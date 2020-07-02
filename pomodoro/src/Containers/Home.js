@@ -39,9 +39,9 @@ class Home extends React.Component {
             minutes: 0,
             seconds: 5,
         },
-        running: false,
         countDown: null,
         counter: 0,
+        break: false,
         audio: {
             playing: false,
         },
@@ -131,6 +131,8 @@ class Home extends React.Component {
     };
 
     timesUp() {
+        this.toggleBreak();
+
         this.playSound();
         this.stopTimer();
 
@@ -203,6 +205,14 @@ class Home extends React.Component {
     testFunc() {
         console.log('this is a test function')
     };
+
+    toggleBreak() {
+        console.log('taking a break!')
+        this.setState({
+            break: !this.state.break,
+            modalIsOpen: !this.state.modalIsOpen,
+        })
+    }
     
 
     render() {
@@ -229,6 +239,7 @@ class Home extends React.Component {
                     resetClock={(e) => this.resetClock(e)}
                 ></Reset>
                 <Modal
+                    break={this.state.break}
                     task={this.state.task} 
                     setTask={(e) => this.setTask(e)}
                     handleTaskSubmit={(e) => this.handleTaskSubmit(e)}
