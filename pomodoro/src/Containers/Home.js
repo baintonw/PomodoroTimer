@@ -29,9 +29,11 @@ import CancelCircle from '../assets/cancel-circle.svg'
 class Home extends React.Component {
 
     state = {
+        user: 'Will',
         menuIsOpen: false,
         modalIsOpen: true,
         task: '',
+        allTasks: [],
         timeLeft: {
             hours: 0,
             minutes: 0,
@@ -73,21 +75,30 @@ class Home extends React.Component {
         })
     };
 
-    //handle change for task
+    //handle submission to all tasks
     handleTaskSubmit(e) {
         e.preventDefault();
+        const taskObj = {
+            user: this.state.user,
+            name: this.state.task,
+            timeStart: new Date(),
+            timeEnd: null,
+            inProgress: true,
+        };
         this.setState({
+            allTasks: [...this.state.allTasks, taskObj],
             modalIsOpen: false,
         }, () => console.log(this.state));
     };
 
-    //set task in state
+    //set single task in state
     setTask(e) {
         e.preventDefault();
         this.setState({
+            
             [e.target.name]: e.target.value,
         }, 
-            () => console.log(this.state.task)
+            () => console.log('state: ', this.state)
         );
     };
      
@@ -117,19 +128,12 @@ class Home extends React.Component {
 
     newTask() {
         let newTask = prompt('What are you working on next?', this.state.task);
-
     };
 
     timesUp() {
         this.playSound();
         this.stopTimer();
 
-        
-
-    
-        // this.setState({
-        //     task: 'newTask'
-        // }, () => {console.log('this is the new task in state: ', this.state.task)})
     };
 
     count() {
@@ -156,7 +160,6 @@ class Home extends React.Component {
     startTimer() {
         this.timerID = setInterval(() => {this.count()}, 1000)
         console.log('timerID!', this.timerID)
-
         this.setState({
             running: true,
         })

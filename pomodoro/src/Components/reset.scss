@@ -1,4 +1,6 @@
 .reset-btn {
+    cursor: pointer;
+
     font-family: inherit;
     box-sizing: border-box;
     display: block;
@@ -7,6 +9,16 @@
     width: 8rem;
     height: 3rem;
     padding: 0 0 1rem 0;
+    border: none;
+    border-radius: 100px;
+    background-color: rgba(216, 216, 216, 0.9);
+    box-shadow: 0 .2rem .4rem rgba(0,0,0,.3);
+    transform: translateY(-1px);
+    transition: all .02s;
+
+    &:active {
+        transform: translateX(0px);
+    }
 
     font-size: 2rem;
 }
