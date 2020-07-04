@@ -132,7 +132,6 @@ class Home extends React.Component {
 
     timesUp() {
         this.toggleBreak();
-
         this.playSound();
         this.stopTimer();
 
@@ -201,21 +200,30 @@ class Home extends React.Component {
         }, () => {console.log('playing changed in state: ', this.state.audio)})
     }
 
-    testFunc() {
-        console.log('this is a test function')
+    startBreak() {
+        console.log('starting break!')
+        //if break is true, toggle in off in x amount of time, this is the break interval
+
+        if(this.state.break) {
+            setTimeout(() => this.toggleBreak(), 300000);
+        }
     };
 
     toggleBreak() {
-        console.log('taking a break!')
+        // console.log('taking a break!')
+        //set 'break' to true in state
         this.setState({
             break: !this.state.break,
             modalIsOpen: !this.state.modalIsOpen,
         })
-    }
+        this.startBreak()
+
+
+    };
     
 
     render() {
-        console.log(this.state)
+        console.log('break func?', this.startBreak)
         return(
             <div className="home-page">
                 <img onClick={(e) => this.handleMenuToggle(e)} className={this.state.menuIsOpen ? "toggle-btn open" : "toggle-btn"} src={CancelCircle}></img>
