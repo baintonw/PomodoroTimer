@@ -193,7 +193,6 @@ class Home extends React.Component {
 
     //Audio
     playSound() {
-        // e.preventDefault();
         this.setState({
             audio: {
                 src: doorbell,
@@ -251,7 +250,14 @@ class Home extends React.Component {
                     {this.handleAudio(doorbell)}
                 </div> */}
                 {/* <Audio playing={true} src={doorbell}></Audio> */}
-                <audio src={this.state.audio.playing ? this.state.audio.src : null} type="audio/mp3" controls autoPlay>
+                <audio  src={this.state.audio.playing ? this.state.audio.src : null} 
+                        type="audio/mp3" 
+                        controls 
+                        autoPlay
+                        style={{
+                            display: `none`,
+                        }}
+                >
                 </audio>
             </div>
         )

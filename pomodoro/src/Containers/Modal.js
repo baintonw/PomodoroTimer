@@ -15,9 +15,11 @@ const handleClick = (e) => {
 }
 
 const renderModalContent = (props) => {
+    //if we're on break don't render modal content, render something else
     if(props.break) {
         return null
     } else {
+        //render the modal content at beginning of ux
         return (
             <ModalContent
                     break={props.break}
