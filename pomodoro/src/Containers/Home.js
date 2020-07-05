@@ -40,7 +40,6 @@ class Home extends React.Component {
             seconds: 5,
         },
         countDown: null,
-        counter: 0,
         break: false,
         audio: {
             playing: false,
