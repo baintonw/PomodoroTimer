@@ -45,7 +45,6 @@ class Home extends React.Component {
         audio: {
             playing: false,
         },
-
     };
 
     //LIFECYCLE METHODS
@@ -131,6 +130,7 @@ class Home extends React.Component {
     };
 
     timesUp() {
+        this.promptCheck();
         this.toggleBreak();
         this.playSound();
         this.stopTimer();
@@ -200,14 +200,25 @@ class Home extends React.Component {
         }, () => {console.log('playing changed in state: ', this.state.audio)})
     }
 
+    promptCheck() {
+        alert('please check a checkbox and then take a quick break!');
+    };
+
     startBreak() {
         console.log('starting break!')
         //if break is true, toggle in off in x amount of time, this is the break interval
-
+        //start a five minute break
         if(this.state.break) {
             setTimeout(() => this.toggleBreak(), 300000);
         }
     };
+
+    // stopBreak() {
+    //     console.log('stopping break!')
+    //     if(!this.state.break) {
+            
+    //     }
+    // };
 
     toggleBreak() {
         // console.log('taking a break!')
