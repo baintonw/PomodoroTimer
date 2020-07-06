@@ -2,7 +2,7 @@
     margin: 200px auto;
     text-align: center;
     padding: 4rem;
-    border: 1px solid black;
+    border: 8px solid rgba(255,99,71,.8);
     border-radius: 5px;
     background-color: #eee;
     box-shadow: 0rem 1rem 1.5rem rgba(0,0,0,.4);
@@ -22,7 +22,9 @@
     &__input {
         display: block;
         margin: 2rem auto;
-        padding: 1rem 1rem;
+        padding: .5rem .5rem;
+        text-align: center;
+        font-size: 2rem;
 
     }
 

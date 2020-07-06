@@ -8,6 +8,8 @@ import Timer from '../Components/Timer'
 import Reset from '../Components/Reset'
 import Audio from '../Components/Audio'
 
+import CheckboxModalContent from '../Components/CheckboxModalContent.js'
+
 //Containers
 import Sidebar from '../Containers/Sidebar'
 import Modal from '../Containers/Modal'
@@ -30,6 +32,7 @@ class Home extends React.Component {
 
     state = {
         user: 'Will',
+        pickATask: true,
         menuIsOpen: false,
         modalIsOpen: true,
         task: '',
@@ -39,6 +42,7 @@ class Home extends React.Component {
             minutes: 0,
             seconds: 5,
         },
+        checkboxPrompt: false,
         countDown: null,
         break: false,
         audio: {
@@ -49,25 +53,23 @@ class Home extends React.Component {
     //LIFECYCLE METHODS
 
     componentDidMount() {
-        console.log('the component has mounted!')
+        // console.log('the component has mounted!')
         
     };
 
     componentWillUnmount() {
-        console.log('THE COMPONENT HAS UNMOUNTED')
+        // console.log('THE COMPONENT HAS UNMOUNTED')
     };
 
 
     //Handling functions
     handleMenuToggle(e) {
-        console.log('handle menu toggle has been clicked!')
         this.setState({
             menuIsOpen: !this.state.menuIsOpen,
         })
     };
 
     handleModalToggle(e) {
-        console.log('modal is closing!')
         this.setState({
             modalIsOpen: !this.state.modalIsOpen,
         })
@@ -86,23 +88,23 @@ class Home extends React.Component {
         this.setState({
             allTasks: [...this.state.allTasks, taskObj],
             modalIsOpen: false,
-        }, () => console.log(this.state));
+        });
     };
 
     //set single task in state
     setTask(e) {
         e.preventDefault();
+
         this.setState({
-            
-            [e.target.name]: e.target.value,
+            [e.target.name]: e.currentTarget.value,
         }, 
-            () => console.log('state: ', this.state)
+            () => console.log('the task: ', this.state.task)
         );
     };
      
     //Decreases seconds in state by one
     decrementSeconds() {
-        console.log('decrement Seconds called!')
+        // console.log('decrement Seconds called!')
             let { timeLeft } = this.state
             let { seconds, minutes } = timeLeft;
             this.setState({
@@ -121,11 +123,7 @@ class Home extends React.Component {
             timeLeft: {
                 minutes: --this.state.timeLeft.minutes,  
             }
-        }, () => console.log('timeLeft: ', timeLeft, 'minutes: ', this.state.timeLeft.minutes))
-    };
-
-    newTask() {
-        let newTask = prompt('What are you working on next?', this.state.task);
+        })
     };
 
     timesUp() {
@@ -139,7 +137,6 @@ class Home extends React.Component {
     count() {
         let { hours, minutes, seconds } = this.state.timeLeft;
         if(hours === 0 && minutes === 0 && seconds === 0) {
-            // this.playSound();
             this.timesUp();
             return
         };
@@ -159,7 +156,6 @@ class Home extends React.Component {
 
     startTimer() {
         this.timerID = setInterval(() => {this.count()}, 1000)
-        console.log('timerID!', this.timerID)
         this.setState({
             running: true,
         })
@@ -196,11 +192,14 @@ class Home extends React.Component {
                 src: doorbell,
                 playing: !this.state.audio.playing
             }
-        }, () => {console.log('playing changed in state: ', this.state.audio)})
+        })
     }
 
+    //render/unmount the 'please check a box!' prompt 
     promptCheck() {
-        alert('please check a checkbox and then take a quick break!');
+        this.setState({
+            checkboxPrompt: !this.state.checkboxPrompt,
+        })
     };
 
     startBreak() {
@@ -212,15 +211,13 @@ class Home extends React.Component {
         }
     };
 
-    // stopBreak() {
-    //     console.log('stopping break!')
-    //     if(!this.state.break) {
-            
-    //     }
-    // };
+    toggleTask() {
+        this.setState({
+            pickATask: !this.state.pickATask
+        })
+    };
 
     toggleBreak() {
-        // console.log('taking a break!')
         //set 'break' to true in state
         this.setState({
             break: !this.state.break,
@@ -230,10 +227,21 @@ class Home extends React.Component {
 
 
     };
+
+    //Rendering functions
+    renderCheckboxPrompt() {
+        if(this.state.checkboxPrompt) {
+            console.log('showing checkbox prompt!')
+            return <CheckboxModalContent
+                promptCheck={this.promptCheck}
+                handleModalToggle={this.handleModalToggle}
+            ></CheckboxModalContent>
+        } 
+    };
     
 
     render() {
-        console.log('break func?', this.startBreak)
+        // console.log('break func?', this.startBreak)
         return(
             <div className="home-page">
                 <img onClick={(e) => this.handleMenuToggle(e)} className={this.state.menuIsOpen ? "toggle-btn open" : "toggle-btn"} src={CancelCircle}></img>
@@ -241,7 +249,8 @@ class Home extends React.Component {
                     menuIsOpen={this.state.menuIsOpen}
                     task={this.state.task}
                 >
-                </Sidebar>                
+                </Sidebar>         
+                {this.state.checkboxPrompt ? this.renderCheckboxPrompt() : null}       
                 <Tomato></Tomato>
                 <Timer
 
@@ -256,7 +265,11 @@ class Home extends React.Component {
                     resetClock={(e) => this.resetClock(e)}
                 ></Reset>
                 <Modal
+
+                    checkboxPrompt={this.state.checkboxPrompt}
                     break={this.state.break}
+                    toggleTask={this.state.toggleTask}
+                    pickATask={this.state}
                     task={this.state.task} 
                     setTask={(e) => this.setTask(e)}
                     handleTaskSubmit={(e) => this.handleTaskSubmit(e)}

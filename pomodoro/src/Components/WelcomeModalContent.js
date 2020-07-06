@@ -10,7 +10,7 @@ import "./modal-content.scss"
 import path from "../assets/cross.svg";
 
 const WelcomeModalContent = (props) => {
-    console.log('props in welcome modal: ', props)
+    // console.log('props in welcome modal: ',)
     return(
         <div className="modal-container__content">
                 <div onClick={(e) => props.handleModalToggle(e)}>

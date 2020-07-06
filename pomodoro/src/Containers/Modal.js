@@ -9,16 +9,15 @@ import "./modal.scss";
 
 //svgs
 import path from "../assets/cross.svg";
+import CheckboxModalContent from "../Components/CheckboxModalContent.js";
 
 const handleClick = (e) => {
     console.log('you clicked it!')
 }
 
 const renderModalContent = (props) => {
-    //if we're on break don't render modal content, render something else
-    if(props.break) {
-        return null
-    } else {
+    //If prompted to pick a task(default state), prompt a user to pick a task
+    if(props.pickATask){
         //render the modal content at beginning of ux
         return (
             <ModalContent
@@ -31,6 +30,14 @@ const renderModalContent = (props) => {
             ></ModalContent>
         )
     } 
+    //if we're on break don't render modal content, render something else
+    //and if there is no prompt to check a box
+
+    if(props.break && !props.checkboxPrompt) {
+        return null
+    }
+    
+    
 };
 
 const Modal = (props) => {
