@@ -77,6 +77,7 @@ class Home extends React.Component {
 
     //handle submission to all tasks
     handleTaskSubmit(e) {
+        console.log('%c TASK SUBMITTED', 'color: dodgerblue; font-size: 25px')
         e.preventDefault();
         const taskObj = {
             user: this.state.user,
@@ -86,6 +87,7 @@ class Home extends React.Component {
             inProgress: true,
         };
         this.setState({
+            pickATask: false,
             allTasks: [...this.state.allTasks, taskObj],
             modalIsOpen: false,
         });
@@ -269,7 +271,7 @@ class Home extends React.Component {
                     checkboxPrompt={this.state.checkboxPrompt}
                     break={this.state.break}
                     toggleTask={this.state.toggleTask}
-                    pickATask={this.state}
+                    pickATask={this.state.pickATask}
                     task={this.state.task} 
                     setTask={(e) => this.setTask(e)}
                     handleTaskSubmit={(e) => this.handleTaskSubmit(e)}
