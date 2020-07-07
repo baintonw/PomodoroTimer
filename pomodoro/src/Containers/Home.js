@@ -8,7 +8,7 @@ import Timer from '../Components/Timer'
 import Reset from '../Components/Reset'
 import Audio from '../Components/Audio'
 
-import CheckboxModalContent from '../Components/CheckboxModalContent.js'
+import CheckboxPrompt from '../Components/CheckboxPrompt.js'
 
 //Containers
 import Sidebar from '../Containers/Sidebar'
@@ -248,10 +248,10 @@ class Home extends React.Component {
     renderCheckboxPrompt() {
         if(this.state.checkboxPrompt) {
             console.log('showing checkbox prompt!')
-            return <CheckboxModalContent
+            return <CheckboxPrompt
                         promptCheck={this.promptCheck}
                         handleModalToggle={this.handleModalToggle}
-                   ></CheckboxModalContent>
+                   ></CheckboxPrompt>
         } 
     };
     

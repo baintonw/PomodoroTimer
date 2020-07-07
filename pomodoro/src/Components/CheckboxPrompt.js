@@ -1,7 +1,7 @@
 import React from "react"
 
 //styles
-import "./modal-content.scss"
+import "./checkbox-prompt.scss"
 
 //Icons
 import Icon from "./Icon.js"
@@ -11,17 +11,16 @@ import path from "../assets/cross.svg";
 
 
 
-const CheckboxModalContent = (props) => {
+const CheckboxPrompt = (props) => {
     console.log('props in welcome modal: ', props)
     return(
-        <div className="modal-container__content">
+        <div className="checkbox-prompt">
                 <div onClick={(e) => props.promptCheck(e)}>
                     <Icon  svgPath={path}></Icon>
                 </div>
-                <h2 className="modal-container__content__heading">Please check a box to start your break!</h2>
-                <button>Click me to make me go away</button>
+                <h2 className="checkbox-prompt__heading">Please check a box to start your break!</h2>
         </div>
     )
 };
 
-export default CheckboxModalContent
+export default CheckboxPrompt

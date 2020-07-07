@@ -9,7 +9,7 @@ import "./modal.scss";
 
 //svgs
 import path from "../assets/cross.svg";
-import CheckboxModalContent from "../Components/CheckboxModalContent.js";
+import CheckboxModalContent from "../Components/CheckboxPrompt.js";
 
 const handleClick = (e) => {
     console.log('you clicked it!')
