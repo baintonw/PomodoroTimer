@@ -10,8 +10,8 @@ const Sidebar = (props) => {
         <div className={props.menuIsOpen ? "menu open" : "menu"}>
                 <ul className="menu-list">
                     <li className="menu-list__item">
-                            <h2 className="menu-list__heading">Current Task</h2>
-    <p className="menu-task-name">{props.task}</p>
+                    <h2 className="menu-list__heading">Current Task</h2>
+                    <p className="menu-task-name">{props.task}</p>
                     </li>
                     <li className="menu-list__item">
                         <h2 className="menu-list__heading">Interval</h2>
@@ -25,10 +25,10 @@ const Sidebar = (props) => {
                         <h2 className="menu-list__heading">Checks</h2>
 
                         <div className="checkbox-container">
-                            <input className="checkbox-container__checkbox" type="checkbox"/>
-                            <input className="checkbox-container__checkbox" type="checkbox"/>
-                            <input className="checkbox-container__checkbox" type="checkbox"/>
-                            <input className="checkbox-container__checkbox" type="checkbox"/>
+                            <input onClick={(e) => props.handleCheck(e)} className="checkbox-container__checkbox" type="checkbox"/>
+                            <input onClick={(e) => props.handleCheck(e)} className="checkbox-container__checkbox" type="checkbox"/>
+                            <input onClick={(e) => props.handleCheck(e)} className="checkbox-container__checkbox" type="checkbox"/>
+                            <input onClick={(e) => props.handleCheck(e)} className="checkbox-container__checkbox" type="checkbox"/>
                         </div>
 
 

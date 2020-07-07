@@ -34,9 +34,9 @@ const renderModalContent = (props) => {
     //if we're on break don't render modal content, render something else
     //and if there is no prompt to check a box
 
-    if(props.break && !props.checkboxPrompt) {
-        return null
-    }
+    // if(props.break && !props.checkboxPrompt) {
+    //     return null
+    // }
     
     
 };

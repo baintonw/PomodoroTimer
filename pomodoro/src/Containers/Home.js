@@ -42,6 +42,9 @@ class Home extends React.Component {
             minutes: 0,
             seconds: 5,
         },
+        interval: {
+            count: 0,
+        },
         checkboxPrompt: false,
         countDown: null,
         break: false,
@@ -130,7 +133,7 @@ class Home extends React.Component {
 
     timesUp() {
         this.promptCheck();
-        this.toggleBreak();
+        // this.toggleBreak();
         this.playSound();
         this.stopTimer();
 
@@ -219,13 +222,25 @@ class Home extends React.Component {
         })
     };
 
+    handleCheck() {
+        console.log('You have checked a checkbox!')
+        if (this.state.checkboxPrompt) {
+            this.promptCheck()
+            this.handleModalToggle()
+            this.startBreak()
+        }
+        
+    };
+
     toggleBreak() {
         //set 'break' to true in state
         this.setState({
             break: !this.state.break,
-            modalIsOpen: !this.state.modalIsOpen,
+            
         })
-        this.startBreak()
+        //these handle the break, one starts the timer, and the other drops the curtain
+        //these should live in the handleCheck function
+        
 
 
     };
@@ -248,6 +263,7 @@ class Home extends React.Component {
             <div className="home-page">
                 <img onClick={(e) => this.handleMenuToggle(e)} className={this.state.menuIsOpen ? "toggle-btn open" : "toggle-btn"} src={CancelCircle}></img>
                 <Sidebar 
+                    handleCheck={(e) => this.handleCheck(e)}
                     menuIsOpen={this.state.menuIsOpen}
                     task={this.state.task}
                 >
