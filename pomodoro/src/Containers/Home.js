@@ -53,25 +53,16 @@ class Home extends React.Component {
         },
     };
 
-    //LIFECYCLE METHODS
-
-    componentDidMount() {
-        // console.log('the component has mounted!')
-        
-    };
-
-    componentWillUnmount() {
-        // console.log('THE COMPONENT HAS UNMOUNTED')
-    };
-
-
     //Handling functions
+
+    //Toggles menu open or closed
     handleMenuToggle(e) {
         this.setState({
             menuIsOpen: !this.state.menuIsOpen,
         })
     };
 
+    //Toggles modal open or closed
     handleModalToggle(e) {
         this.setState({
             modalIsOpen: !this.state.modalIsOpen,
@@ -120,7 +111,7 @@ class Home extends React.Component {
             }, () => console.log(this.state.timeLeft.seconds))
             
     };
-
+    //Decrements minutes by one
     decrementMinutes() {
         let { timeLeft } = this.state;
         this.setState({
@@ -131,14 +122,15 @@ class Home extends React.Component {
         })
     };
 
+    //This triggers when clock reaches 0 (hours, minutes, and seconds)
     timesUp() {
         this.promptCheck();
-        // this.toggleBreak();
         this.playSound();
         this.stopTimer();
 
     };
 
+    //Decrease clock by minutes or seconds depending on state
     count() {
         let { hours, minutes, seconds } = this.state.timeLeft;
         if(hours === 0 && minutes === 0 && seconds === 0) {
@@ -158,7 +150,7 @@ class Home extends React.Component {
         };
     }
     
-
+    //Start an interval, calling count function every second (1000ms)
     startTimer() {
         this.timerID = setInterval(() => {this.count()}, 1000)
         this.setState({
@@ -166,7 +158,7 @@ class Home extends React.Component {
         })
         
     };
-
+    //Clear counting interval
     stopTimer() {
         clearInterval(this.timerID)        
         this.setState({
@@ -174,7 +166,7 @@ class Home extends React.Component {
         })
     };
 
-    
+    //Reset clock in state to default
     resetClock(e) {
          e.preventDefault()
          this.stopTimer();
@@ -207,6 +199,7 @@ class Home extends React.Component {
         })
     };
 
+    //set timeout for modal to close after set amount of time
     startBreak() {
         console.log('starting break!')
         //if break is true, toggle in off in x amount of time, this is the break interval
@@ -218,12 +211,14 @@ class Home extends React.Component {
         
     };
 
+    //toggle the 'pick a task' prompt
     toggleTask() {
         this.setState({
             pickATask: !this.state.pickATask
         })
     };
 
+    //handle checkbox checking - triggers break after box is checked
     handleCheck() {
         console.log('You have checked a checkbox!')
         if (this.state.checkboxPrompt) {
@@ -240,7 +235,7 @@ class Home extends React.Component {
         }
         
     };
-
+    //set break to true/false and turn the modal on or off
     toggleBreak() {
         //set 'break' to true in state
         this.setState({
@@ -254,15 +249,14 @@ class Home extends React.Component {
         if(this.state.checkboxPrompt) {
             console.log('showing checkbox prompt!')
             return <CheckboxModalContent
-                promptCheck={this.promptCheck}
-                handleModalToggle={this.handleModalToggle}
-            ></CheckboxModalContent>
+                        promptCheck={this.promptCheck}
+                        handleModalToggle={this.handleModalToggle}
+                   ></CheckboxModalContent>
         } 
     };
     
 
     render() {
-        // console.log('break func?', this.startBreak)
         return(
             <div className="home-page">
                 <img onClick={(e) => this.handleMenuToggle(e)} className={this.state.menuIsOpen ? "toggle-btn open" : "toggle-btn"} src={CancelCircle}></img>
@@ -299,10 +293,6 @@ class Home extends React.Component {
                     handleModalToggle={(e) => this.handleModalToggle(e)} 
                     modalIsOpen={this.state.modalIsOpen}>
                 </Modal>
-                {/* <div id="audio-div">
-                    {this.handleAudio(doorbell)}
-                </div> */}
-                {/* <Audio playing={true} src={doorbell}></Audio> */}
                 <audio  src={this.state.audio.playing ? this.state.audio.src : null} 
                         type="audio/mp3" 
                         controls 
