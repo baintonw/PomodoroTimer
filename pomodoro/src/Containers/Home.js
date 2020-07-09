@@ -42,9 +42,8 @@ class Home extends React.Component {
             minutes: 0,
             seconds: 1,
         },
-        interval: {
-            count: 0,
-        },
+        set: 0,
+        interval: 0,
         checkboxPrompt: false,
         countDown: null,
         break: false,
