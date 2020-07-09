@@ -168,15 +168,19 @@ class Home extends React.Component {
 
     //Reset clock in state to default
     resetClock(e) {
-         e.preventDefault()
-         this.stopTimer();
+         if(e) {
+            e.preventDefault();
+         }
+         
+            this.stopTimer();
+         
 
          this.setState({
             ...this.state,
             timeLeft: {
                 hours: 0,
-                minutes: 25,
-                seconds: 0,
+                minutes: 0,
+                seconds: 5,
             }
          })
          
@@ -202,12 +206,15 @@ class Home extends React.Component {
     //set timeout for modal to close after set amount of time
     startBreak() {
         console.log('starting break!')
+
         //if break is true, toggle in off in x amount of time, this is the break interval
         //start a five minute break
         const fiveMinutes = 300000;
         
         console.log('%cSTARTING A BREAK FOR REAL', 'color: teal; font-size: 30px')
         setTimeout(() => this.toggleBreak(), 1000);
+        setTimeout(() => this.startTimer(), 1000);
+
         
     };
 
@@ -223,15 +230,20 @@ class Home extends React.Component {
         console.log('You have checked a checkbox!')
         if (this.state.checkboxPrompt) {
             console.log('inside handle check!')
+            this.resetClock();
+
             //turn off the prompt
             this.promptCheck()
             //turn on the modal
             this.handleModalToggle()
+
             //toggle break in state
             this.toggleBreak()
+
             //set the modal to toggle off in 5 minutes
 
             this.startBreak()
+
         }
         
     };
