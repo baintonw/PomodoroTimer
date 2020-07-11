@@ -44,6 +44,7 @@ class Home extends React.Component {
         },
         set: 0,
         interval: 0,
+        checks: 0,
         checkboxPrompt: false,
         countDown: null,
         break: false,
@@ -225,12 +226,24 @@ class Home extends React.Component {
     };
 
     //handle checkbox checking - triggers break after box is checked
-    handleCheck() {
-        console.log('You have checked a checkbox!')
+    handleCheck(e) {
+        console.log('You have checked a checkbox!', 'is it checkd?', e.currentTarget.checked)
+        //since the checkbox registers as checked BEFORE the event is passed, checking 
+        //if the box has been checked is counter-intuitive
+        if(e.currentTarget.checked) {
+            this.setState({
+                checks: ++this.state.checks,
+            }, () => console.log('checks in state: ', this.state.checks))
+        } else {
+            this.setState({
+                checks: --this.state.checks,
+            }, () => console.log('checks in state: ', this.state.checks))
+        }   
+        
+
         if (this.state.checkboxPrompt) {
             console.log('inside handle check!')
             this.resetClock();
-
             //turn off the prompt
             this.promptCheck()
             //turn on the modal
@@ -238,11 +251,8 @@ class Home extends React.Component {
 
             //toggle break in state
             this.toggleBreak()
-
             //set the modal to toggle off in 5 minutes
-
             this.startBreak()
-
         }
         
     };
