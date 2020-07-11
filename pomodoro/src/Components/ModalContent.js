@@ -16,7 +16,7 @@ const renderContent = (props) => {
 
     //default welcome screen content
     return(
-        <WelcomeModalContent handleMenuToggle={props.handleModalToggle}
+        <WelcomeModalContent handleModalToggle={props.handleModalToggle}
                              setTask={props.setTask}
                              handleTaskSubmit={props.handleTaskSubmit}
                              handleMenuToggle={props.handleMenuToggle}               

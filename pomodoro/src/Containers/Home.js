@@ -256,6 +256,7 @@ class Home extends React.Component {
         }
         
     };
+    
     //set break to true/false and turn the modal on or off
     toggleBreak() {
         //set 'break' to true in state
