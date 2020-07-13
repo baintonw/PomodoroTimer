@@ -71,7 +71,6 @@ class Home extends React.Component {
 
     //handle submission to all tasks
     handleTaskSubmit(e) {
-        console.log('%c TASK SUBMITTED', 'color: dodgerblue; font-size: 25px')
         e.preventDefault();
         const taskObj = {
             user: this.state.user,
@@ -93,9 +92,7 @@ class Home extends React.Component {
 
         this.setState({
             [e.target.name]: e.currentTarget.value,
-        }, 
-            () => console.log('the task: ', this.state.task)
-        );
+        });
     };
      
     //Decreases seconds in state by one
@@ -210,8 +207,15 @@ class Home extends React.Component {
         //if break is true, toggle in off in x amount of time, this is the break interval
         //start a five minute break
         const fiveMinutes = 300000;
+        //start a twenty five minute break
+        const twentyFiveMinutes = 1500000;
+
+        if(this.state.break === true) {
+            alert('break time!')
+            console.log('%cTIME FOR A BREAK', 'color: tomato; font-size: 30px')
+        }
+
         
-        console.log('%cSTARTING A BREAK FOR REAL', 'color: teal; font-size: 30px')
         setTimeout(() => this.toggleBreak(), 1000);
         setTimeout(() => this.startTimer(), 1000);
 
@@ -227,49 +231,46 @@ class Home extends React.Component {
 
     //handle checkbox checking - triggers break after box is checked
     handleCheck(e) {
-        console.log('You have checked a checkbox!', 'is it checkd?', e.currentTarget.checked)
         //since the checkbox registers as checked BEFORE the event is passed, checking 
         //if the box has been checked is counter-intuitive
         if(e.currentTarget.checked) {
             this.setState({
                 checks: ++this.state.checks,
-            }, () => console.log('checks in state: ', this.state.checks))
+            })
         } else {
             this.setState({
                 checks: --this.state.checks,
-            }, () => console.log('checks in state: ', this.state.checks))
+            })
         }   
         
 
         if (this.state.checkboxPrompt) {
-            console.log('inside handle check!')
             this.resetClock();
             //turn off the prompt
             this.promptCheck()
             //turn on the modal
             this.handleModalToggle()
-
             //toggle break in state
             this.toggleBreak()
+            console.log('this is the state of break in checkboxprompt: ', this.state.break)
             //set the modal to toggle off in 5 minutes
             this.startBreak()
         }
         
     };
-    
+
     //set break to true/false and turn the modal on or off
     toggleBreak() {
         //set 'break' to true in state
         this.setState({
             break: !this.state.break,
             modalIsOpen: !this.state.modalIsOpen,
-        })
+        }, () => console.log('break in state: ', this.state.break))
     };
 
     //Rendering functions
     renderCheckboxPrompt() {
         if(this.state.checkboxPrompt) {
-            console.log('showing checkbox prompt!')
             return <CheckboxPrompt
                         promptCheck={this.promptCheck}
                         handleModalToggle={this.handleModalToggle}

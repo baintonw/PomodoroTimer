@@ -21,7 +21,6 @@ const WelcomeModalContent = (props) => {
                         {
                             props.handleTaskSubmit(e);
                             props.handleMenuToggle(e);
-                                
                         }
                 }>   
                     <label className="modal-container__content__label" name="task">Please pick a task: </label>  

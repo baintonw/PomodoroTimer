@@ -11,15 +11,11 @@ import "./modal.scss";
 import path from "../assets/cross.svg";
 import CheckboxModalContent from "../Components/CheckboxPrompt.js";
 
-const handleClick = (e) => {
-    console.log('you clicked it!')
-}
 
 const renderModalContent = (props) => {
     //If prompted to pick a task(default state), prompt a user to pick a task
     if(props.pickATask){
         //render the modal content at beginning of ux
-        console.log('%c PICK A TASK IS PRESENT', 'color: tomato; font-size: 25px')
         return (
             <ModalContent
                     break={props.break}
@@ -42,7 +38,6 @@ const renderModalContent = (props) => {
 };
 
 const Modal = (props) => {
-    console.log('this is the props in MODAL: ', props)
     return(
         <div className={props.modalIsOpen ? "modal-container" : "modal-container closed"}>
             {renderModalContent(props)}

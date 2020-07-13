@@ -12,7 +12,6 @@ import path from "../assets/cross.svg";
 
 
 const CheckboxPrompt = (props) => {
-    console.log('props in welcome modal: ', props)
     return(
         <div className="checkbox-prompt">
                 <div onClick={(e) => props.promptCheck(e)}>
