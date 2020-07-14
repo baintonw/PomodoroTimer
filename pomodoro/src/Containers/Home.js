@@ -48,6 +48,7 @@ class Home extends React.Component {
         checkboxPrompt: false,
         countDown: null,
         break: false,
+        longBreak: false,
         audio: {
             playing: false,
         },
@@ -205,12 +206,19 @@ class Home extends React.Component {
 
         //if break is true, toggle in off in x amount of time, this is the break interval
         //start a five minute break
-        const fiveMinutes = 300000;
+        const shortBreak = 300000;
         //start a twenty five minute break
-        const twentyFiveMinutes = 1500000;
-
-        setTimeout(() => this.toggleBreak(), 1000);
-        setTimeout(() => this.startTimer(), 1000);
+        const longBreak = 1500000;
+        if(this.state.break) {
+            setTimeout(() => this.toggleBreak(), 1000);
+            setTimeout(() => this.startTimer(), 1000);
+        }
+        if(this.state.longBreak) {
+            alert('TIME FOR A LOOOONG BREAK')
+            setTimeout(() => this.toggleBreak(), longBreak);
+            setTimeout(() => this.startTimer(), longBreak);
+        }
+        
 
         
     };
@@ -254,21 +262,31 @@ class Home extends React.Component {
 
     //set break to true/false and turn the modal on or off
     toggleBreak() {
+
         //we hit this
         if(this.state.intervals === 4 && this.state.checks === 4) {
-            alert('LOOOONG BREAK!')
-        }
-
-        //set 'break' to true in state
-        this.setState({
-            break: !this.state.break,
-            modalIsOpen: !this.state.modalIsOpen,
-        }, () => {
-            if(this.state.break) {
-                //set the modal to toggle off in 5 minutes
-                this.startBreak()
-            }
-        })
+            this.setState({
+                longBreak: !this.state.longBreak,
+                modalIsOpen: !this.state.modalIsOpen,
+            }, () => {
+                if(this.state.longBreak) {
+                    //set the modal to toggle off in 5 minutes
+                    this.startBreak()
+                }
+            })
+        } else {
+            //set 'break' to true in state
+            this.setState({
+                break: !this.state.break,
+                modalIsOpen: !this.state.modalIsOpen,
+            }, () => {
+                if(this.state.break) {
+                    //set the modal to toggle off in 5 minutes
+                    this.startBreak()
+                }
+            })
+            } 
+        
         
     };
 
