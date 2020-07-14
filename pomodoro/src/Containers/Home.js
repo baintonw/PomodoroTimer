@@ -43,7 +43,7 @@ class Home extends React.Component {
             seconds: 1,
         },
         set: 0,
-        interval: 0,
+        intervals: 4,
         checks: 0,
         checkboxPrompt: false,
         countDown: null,
@@ -168,10 +168,8 @@ class Home extends React.Component {
          if(e) {
             e.preventDefault();
          }
-         
             this.stopTimer();
          
-
          this.setState({
             ...this.state,
             timeLeft: {
@@ -201,6 +199,7 @@ class Home extends React.Component {
     };
 
     //set timeout for modal to close after set amount of time
+    //this function is called in toggleBreak, if break is set to true in state
     startBreak() {
         console.log('starting break!')
 
@@ -210,12 +209,6 @@ class Home extends React.Component {
         //start a twenty five minute break
         const twentyFiveMinutes = 1500000;
 
-        if(this.state.break === true) {
-            alert('break time!')
-            console.log('%cTIME FOR A BREAK', 'color: tomato; font-size: 30px')
-        }
-
-        
         setTimeout(() => this.toggleBreak(), 1000);
         setTimeout(() => this.startTimer(), 1000);
 
@@ -231,20 +224,21 @@ class Home extends React.Component {
 
     //handle checkbox checking - triggers break after box is checked
     handleCheck(e) {
+        console.log('handleCheck -> this.state.break: ', this.state.break)
         //since the checkbox registers as checked BEFORE the event is passed, checking 
         //if the box has been checked is counter-intuitive
         if(e.currentTarget.checked) {
             this.setState({
                 checks: ++this.state.checks,
-            })
+            }, ()=> console.log('this is how many checks: ', this.state.checks, '\nthis is how many intervals: ', this.state.intervals))
         } else {
             this.setState({
                 checks: --this.state.checks,
             })
         }   
         
-
-        if (this.state.checkboxPrompt) {
+        //If the checkbox prompt is out and a box is checked
+        if(this.state.checkboxPrompt) {
             this.resetClock();
             //turn off the prompt
             this.promptCheck()
@@ -252,20 +246,30 @@ class Home extends React.Component {
             this.handleModalToggle()
             //toggle break in state
             this.toggleBreak()
+
             console.log('this is the state of break in checkboxprompt: ', this.state.break)
-            //set the modal to toggle off in 5 minutes
-            this.startBreak()
         }
         
     };
 
     //set break to true/false and turn the modal on or off
     toggleBreak() {
+        //we hit this
+        if(this.state.intervals === 4 && this.state.checks === 4) {
+            alert('LOOOONG BREAK!')
+        }
+
         //set 'break' to true in state
         this.setState({
             break: !this.state.break,
             modalIsOpen: !this.state.modalIsOpen,
-        }, () => console.log('break in state: ', this.state.break))
+        }, () => {
+            if(this.state.break) {
+                //set the modal to toggle off in 5 minutes
+                this.startBreak()
+            }
+        })
+        
     };
 
     //Rendering functions
