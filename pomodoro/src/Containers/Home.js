@@ -44,7 +44,7 @@ class Home extends React.Component {
         },
         set: 0,
         intervals: 4,
-        checks: 0,
+        checks: 3,
         checkboxPrompt: false,
         countDown: null,
         break: false,
@@ -175,12 +175,12 @@ class Home extends React.Component {
             ...this.state,
             timeLeft: {
                 hours: 0,
-                minutes: 0,
-                seconds: 5,
+                minutes: 25,
+                seconds: 0,
             }
          })
          
-    }
+    };
 
     //Audio
     playSound() {
@@ -190,7 +190,7 @@ class Home extends React.Component {
                 playing: !this.state.audio.playing
             }
         })
-    }
+    };
 
     //render/unmount the 'please check a box!' prompt 
     promptCheck() {
@@ -202,8 +202,8 @@ class Home extends React.Component {
     //set timeout for modal to close after set amount of time
     //this function is called in toggleBreak, if break is set to true in state
     startBreak() {
-        console.log('starting break!')
 
+        console.log('starting break!')
         //if break is true, toggle in off in x amount of time, this is the break interval
         //start a five minute break
         const shortBreak = 300000;
@@ -215,8 +215,11 @@ class Home extends React.Component {
         }
         if(this.state.longBreak) {
             alert('TIME FOR A LOOOONG BREAK')
+            const longBreakInterval = setInterval(() => this.count(), 1000) 
+            setTimeout(() => clearInterval(longBreakInterval), longBreak);
             setTimeout(() => this.toggleBreak(), longBreak);
             setTimeout(() => this.startTimer(), longBreak);
+
         }
         
     };
@@ -245,7 +248,7 @@ class Home extends React.Component {
         
         //If the checkbox prompt is out and a box is checked
         if(this.state.checkboxPrompt) {
-            this.resetClock();
+            this.resetClock()
             //turn off the prompt
             this.promptCheck()
             //turn on the modal
@@ -324,7 +327,7 @@ class Home extends React.Component {
                     resetClock={(e) => this.resetClock(e)}
                 ></Reset>
                 <Modal
-
+                    timeLeft={this.state.timeLeft}
                     checkboxPrompt={this.state.checkboxPrompt}
                     break={this.state.break}
                     longBreak={this.state.longBreak}

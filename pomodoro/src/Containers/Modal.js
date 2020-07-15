@@ -43,7 +43,7 @@ const renderModalContent = (props) => {
                     fontSize: `4.5rem`,
                     color: `rgba(248,248,255, 1)`,
                 }}>
-                    See you in 25 minutes...
+                    See you in {props.timeLeft.minutes} minutes...
                 </h1>
             </div>
         )
