@@ -219,8 +219,6 @@ class Home extends React.Component {
             setTimeout(() => this.startTimer(), longBreak);
         }
         
-
-        
     };
 
     //toggle the 'pick a task' prompt
@@ -329,6 +327,7 @@ class Home extends React.Component {
 
                     checkboxPrompt={this.state.checkboxPrompt}
                     break={this.state.break}
+                    longBreak={this.state.longBreak}
                     toggleTask={this.state.toggleTask}
                     pickATask={this.state.pickATask}
                     task={this.state.task} 

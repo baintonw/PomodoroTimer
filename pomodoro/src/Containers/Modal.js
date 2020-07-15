@@ -26,7 +26,28 @@ const renderModalContent = (props) => {
                     handleModalToggle={props.handleModalToggle}
             ></ModalContent>
         )
-    } 
+    }
+    
+    if(props.longBreak) {
+        return(
+            <div style={{
+                // display: `block`,
+                position: `absolute`,
+                top: `50%`,
+                left: `50%`,
+                transform: `translate(-50%, -50%)`,
+                textAlign: `center`,
+
+            }}>
+                <h1 style={{
+                    fontSize: `4.5rem`,
+                    color: `rgba(248,248,255, 1)`,
+                }}>
+                    See you in 25 minutes...
+                </h1>
+            </div>
+        )
+    }
     //if we're on break don't render modal content, render something else
     //and if there is no prompt to check a box
 
