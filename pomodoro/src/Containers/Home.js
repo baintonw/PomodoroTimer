@@ -209,6 +209,7 @@ class Home extends React.Component {
         const shortBreak = 300000;
         //start a twenty five minute break
         const longBreak = 1500000;
+        // const longBreak = 5000
         if(this.state.break) {
             setTimeout(() => this.toggleBreak(), 1000);
             setTimeout(() => this.startTimer(), 1000);
@@ -216,10 +217,13 @@ class Home extends React.Component {
         if(this.state.longBreak) {
             alert('TIME FOR A LOOOONG BREAK')
             const longBreakInterval = setInterval(() => this.count(), 1000) 
+            //this isn't running
             setTimeout(() => clearInterval(longBreakInterval), longBreak);
             setTimeout(() => this.toggleBreak(), longBreak);
-            setTimeout(() => this.startTimer(), longBreak);
+            setTimeout(() => this.resetClock(), longBreak);
+            // setTimeout(() => this.startTimer(), longBreak);
 
+            
         }
         
     };
