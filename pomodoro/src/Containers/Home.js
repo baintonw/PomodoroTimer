@@ -215,7 +215,6 @@ class Home extends React.Component {
             setTimeout(() => this.startTimer(), 1000);
         }
         if(this.state.longBreak) {
-            alert('TIME FOR A LOOOONG BREAK')
             const longBreakInterval = setInterval(() => this.count(), 1000) 
             //this isn't running
             setTimeout(() => clearInterval(longBreakInterval), longBreak);
