@@ -44,6 +44,7 @@ class Home extends React.Component {
         },
         set: 0,
         intervals: 4,
+        totalIntervals: 0,
         checks: 3,
         checkboxPrompt: false,
         countDown: null,
@@ -192,6 +193,13 @@ class Home extends React.Component {
         })
     };
 
+    //Increments totalIntervals in state
+    incrementTotalIntervals() {
+        this.setState({
+            totalIntervals: ++this.state.totalIntervals
+        }, () => {console.log('%ctotalIntervals in state: ', 'color: MediumAquamarine; font-size: 20px', this.state.totalIntervals)})
+    }
+
     //render/unmount the 'please check a box!' prompt 
     promptCheck() {
         this.setState({
@@ -208,21 +216,22 @@ class Home extends React.Component {
         //start a five minute break
         const shortBreak = 300000;
         //start a twenty five minute break
-        const longBreak = 1500000;
-        // const longBreak = 5000
+        // const longBreak = 1500000;
+        const longBreak = 5000
         if(this.state.break) {
             setTimeout(() => this.toggleBreak(), 1000);
             setTimeout(() => this.startTimer(), 1000);
+            this.incrementTotalIntervals()
         }
+        //this handles most of the transition from an old set into a new set
         if(this.state.longBreak) {
             const longBreakInterval = setInterval(() => this.count(), 1000) 
-            //this isn't running
             setTimeout(() => clearInterval(longBreakInterval), longBreak);
             setTimeout(() => this.toggleBreak(), longBreak);
             setTimeout(() => this.resetClock(), longBreak);
-            // setTimeout(() => this.startTimer(), longBreak);
+            setTimeout(() => this.newSet(), longBreak);
+            this.incrementTotalIntervals()
 
-            
         }
         
     };
@@ -303,6 +312,17 @@ class Home extends React.Component {
                    ></CheckboxPrompt>
         } 
     };
+
+    //Increment the number of sets, reset the count of intervals and checks for this set
+    newSet() {
+        console.log('%cThis is a new set!', 'color: DeepSkyBlue; font-size: 20px')
+        this.setState({
+            set: ++this.state.set,
+            intervals: 0,
+            checks: 0,
+        }, () => {console.log('here we have it, state when a new set begins: ', this.state)})
+
+    }
     
 
     render() {
