@@ -10,6 +10,8 @@ import Audio from '../Components/Audio'
 
 import CheckboxPrompt from '../Components/CheckboxPrompt.js'
 
+import WelcomeModalContent from '../Components/WelcomeModalContent'
+
 //Containers
 import Sidebar from '../Containers/Sidebar'
 import Modal from '../Containers/Modal'
@@ -47,6 +49,7 @@ class Home extends React.Component {
         totalIntervals: 0,
         checks: 3,
         checkboxPrompt: false,
+        changeTaskPrompt: false,
         countDown: null,
         break: false,
         longBreak: false,
@@ -313,6 +316,21 @@ class Home extends React.Component {
         } 
     };
 
+    renderChangeTaskPrompt() {
+        
+            return (
+                <WelcomeModalContent 
+                    changeTaskPrompt={this.state.changeTaskPrompt}
+                    handleModalToggle={this.handleModalToggle}
+                    setTask={this.setTask}
+                    handleTaskSubmit={this.handleTaskSubmit}
+                    handleMenuToggle={this.handleMenuToggle}               
+                >
+                </WelcomeModalContent>  
+            )
+        
+    };
+
     //Increment the number of sets, reset the count of intervals and checks for this set
     newSet() {
         console.log('%cThis is a new set!', 'color: DeepSkyBlue; font-size: 20px')
@@ -335,7 +353,9 @@ class Home extends React.Component {
                     task={this.state.task}
                 >
                 </Sidebar>         
-                {this.state.checkboxPrompt ? this.renderCheckboxPrompt() : null}       
+                {this.state.checkboxPrompt ? this.renderCheckboxPrompt() : null} 
+                {this.state.changeTaskPrompt ? this.renderChangeTaskPrompt() : null}  
+                  
                 <Tomato></Tomato>
                 <Timer
 

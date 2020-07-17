@@ -16,7 +16,7 @@ const WelcomeModalContent = (props) => {
                 <div onClick={(e) => props.handleModalToggle(e)}>
                     <Icon  svgPath={path}></Icon>
                 </div>
-                <h2 className="modal-container__content__heading">What are you working on today?</h2>
+                <h2 className="modal-container__content__heading">{props.changeTaskPrompt ? 'Would you like to switch tasks?': 'What are you working on today?'}</h2>
                 <form onSubmit={(e) =>
                         {
                             props.handleTaskSubmit(e);
