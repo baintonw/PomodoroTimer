@@ -34,7 +34,8 @@ class Home extends React.Component {
 
     state = {
         user: 'Will',
-        timeWorked: {
+        clockedIn: false,
+        workDay: {
             clockIn: null,
             clockOut: null,
         },
@@ -220,7 +221,26 @@ class Home extends React.Component {
     //Clock In
 
     clockIn() {
-        console.log('Clocking in!')
+        const clockInTime = new Date()
+        console.log(this.state.user + ' clocked in at: ', clockInTime)
+        if(!this.state.clockedIn) {
+            this.setState({
+                clockedIn: true,
+                workDay: {
+                    ...this.state.workDay,
+                    clockIn: clockInTime, 
+                }
+            }, () => {console.log('clockIn in state: ', this.state.workDay.clockIn)})
+        } else {
+            this.setState({
+                clockedIn: false,
+                workDay: {
+                    ...this.state.workDay,
+                    clockOut: clockInTime, 
+                }
+            }, () => {console.log('clockOut in state: ', this.state.workDay.clockOut)})
+        }
+        
     }
 
     //set timeout for modal to close after set amount of time
@@ -360,7 +380,8 @@ class Home extends React.Component {
         return(
             <div className="home-page">
                 <img onClick={(e) => this.handleMenuToggle(e)} className={this.state.menuIsOpen ? "toggle-btn open" : "toggle-btn"} src={CancelCircle}></img>
-                <Sidebar 
+                <Sidebar
+                    clockedIn={this.state.clockedIn}
                     clockIn={(e) => this.clockIn(e)}
                     handleCheck={(e) => this.handleCheck(e)}
                     menuIsOpen={this.state.menuIsOpen}
