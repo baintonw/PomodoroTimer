@@ -32,7 +32,7 @@ const Sidebar = (props) => {
                         </div>
                     </li>
                 </ul>
-                <button className="clock-in-btn spin circle">{props.clockedIn ? 'Clock Out' : 'Clock In'}</button>
+                <button onClick={(e) => props.clockIn(e)} className="clock-in-btn spin circle">{props.clockedIn ? 'Clock Out' : 'Clock In'}</button>
 
 
         </div>

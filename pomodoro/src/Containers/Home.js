@@ -61,7 +61,7 @@ class Home extends React.Component {
             playing: false,
         },
     };
-    
+
 
     //Handling functions
 
@@ -104,6 +104,8 @@ class Home extends React.Component {
             [e.target.name]: e.currentTarget.value,
         });
     };
+
+    //CLOCK FUNCTIONS
      
     //Decreases seconds in state by one
     decrementSeconds() {
@@ -214,6 +216,12 @@ class Home extends React.Component {
             checkboxPrompt: !this.state.checkboxPrompt,
         })
     };
+
+    //Clock In
+
+    clockIn() {
+        console.log('Clocking in!')
+    }
 
     //set timeout for modal to close after set amount of time
     //this function is called in toggleBreak, if break is set to true in state
@@ -353,6 +361,7 @@ class Home extends React.Component {
             <div className="home-page">
                 <img onClick={(e) => this.handleMenuToggle(e)} className={this.state.menuIsOpen ? "toggle-btn open" : "toggle-btn"} src={CancelCircle}></img>
                 <Sidebar 
+                    clockIn={(e) => this.clockIn(e)}
                     handleCheck={(e) => this.handleCheck(e)}
                     menuIsOpen={this.state.menuIsOpen}
                     task={this.state.task}
