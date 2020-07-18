@@ -34,6 +34,10 @@ class Home extends React.Component {
 
     state = {
         user: 'Will',
+        timeWorked: {
+            clockIn: null,
+            clockOut: null,
+        },
         pickATask: true,
         menuIsOpen: false,
         modalIsOpen: true,
@@ -57,6 +61,7 @@ class Home extends React.Component {
             playing: false,
         },
     };
+    
 
     //Handling functions
 

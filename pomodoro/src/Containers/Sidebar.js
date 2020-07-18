@@ -30,10 +30,11 @@ const Sidebar = (props) => {
                             <input onClick={(e) => props.handleCheck(e)} className="checkbox-container__checkbox" type="checkbox"/>
                             <input onClick={(e) => props.handleCheck(e)} className="checkbox-container__checkbox" type="checkbox"/>
                         </div>
-
-
                     </li>
                 </ul>
+                <button className="clock-in-btn spin circle">{props.clockedIn ? 'Clock Out' : 'Clock In'}</button>
+
+
         </div>
         
     )
