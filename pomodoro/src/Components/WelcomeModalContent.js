@@ -13,8 +13,8 @@ const WelcomeModalContent = (props) => {
     // console.log('props in welcome modal: ',)
     return(
         <div className="modal-container__content">
-                <div onClick={(e) => props.handleModalToggle(e)}>
-                    <Icon  svgPath={path}></Icon>
+                <div className="modal-container__content__close-btn" onClick={(e) => props.handleModalToggle(e)}>
+                    <Icon svgPath={path}></Icon>
                 </div>
                 <h2 className="modal-container__content__heading">{props.changeTaskPrompt ? 'Would you like to switch tasks?': 'What are you working on today?'}</h2>
                 <form onSubmit={(e) =>

@@ -8,6 +8,21 @@
     box-shadow: 0rem 1rem 1.5rem rgba(0,0,0,.4);
     width: 40%;
 
+    &__close-btn {
+        
+            fill: rgba(66, 66, 66, 0.8);
+            float: right;
+            position: relative;
+            top: -2rem;
+            right: -2rem;
+            cursor: pointer;
+
+            &:hover {
+                fill: rgba(0, 0, 0, 0.8);
+            }
+        
+    }
+
     &__heading {
         font-size: 2rem;
         font-weight: 400;
@@ -25,7 +40,6 @@
         padding: .5rem .5rem;
         text-align: center;
         font-size: 2rem;
-
     }
 
 

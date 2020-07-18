@@ -200,7 +200,7 @@ class Home extends React.Component {
     incrementTotalIntervals() {
         this.setState({
             totalIntervals: ++this.state.totalIntervals
-        }, () => {console.log('%ctotalIntervals in state: ', 'color: MediumAquamarine; font-size: 20px', this.state.totalIntervals)})
+        }, () => {console.log('%ctotalIntervals in state: ', 'color: thistle; font-size: 20px', this.state.totalIntervals)})
     }
 
     //render/unmount the 'please check a box!' prompt 
