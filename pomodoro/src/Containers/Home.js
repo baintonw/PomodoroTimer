@@ -218,17 +218,50 @@ class Home extends React.Component {
         })
     };
 
+    /*
+    Time functions
+    */
+
+    formatHour(hour) {
+        if(hour > 12) {
+            return hour - 12
+        } else {
+            return hour
+        }
+
+    }
+
+    formatDateToString(time) {
+        const month = (time.getMonth() < 11) ? time.getMonth() + 1 : 12
+        const date = time.getDate()
+        const hour = this.formatHour(time.getHours())
+        const minutes = time.getMinutes()
+
+        const clockInTimeString = `${hour}:${minutes} - ${month}/${date}`
+
+        return clockInTimeString
+    }
+
     //Clock In
 
     clockIn() {
-        const clockInTime = new Date()
-        console.log(this.state.user + ' clocked in at: ', clockInTime)
+        //Desired format --> HH:MM - MM/DD 
+        //Therefore I need formatted hours, formatted minutes, months, and the date
+        // const clockInTime = new Date()
+        const now = new Date()
+        
+
+        const clockInDateObj = new Date(now.getFullYear(), (now.getMonth() - 1), now.getDate(), now.getHours(), now.getSeconds())
+        const clockInString = this.formatDateToString(now)
+        
+        console.log('this is the clock in STRING: ', clockInString)
+        
         if(!this.state.clockedIn) {
             this.setState({
                 clockedIn: true,
                 workDay: {
                     ...this.state.workDay,
-                    clockIn: clockInTime, 
+                    clockIn: clockInDateObj, 
                 }
             }, () => {console.log('clockIn in state: ', this.state.workDay.clockIn)})
         } else {
@@ -236,7 +269,7 @@ class Home extends React.Component {
                 clockedIn: false,
                 workDay: {
                     ...this.state.workDay,
-                    clockOut: clockInTime, 
+                    clockOut: clockInDateObj, 
                 }
             }, () => {console.log('clockOut in state: ', this.state.workDay.clockOut)})
         }
@@ -246,7 +279,6 @@ class Home extends React.Component {
     //set timeout for modal to close after set amount of time
     //this function is called in toggleBreak, if break is set to true in state
     startBreak() {
-
         console.log('starting break!')
         //if break is true, toggle in off in x amount of time, this is the break interval
         //start a five minute break
@@ -334,9 +366,7 @@ class Home extends React.Component {
                     this.startBreak()
                 }
             })
-            } 
-        
-        
+          } 
     };
 
     //Rendering functions
@@ -345,7 +375,8 @@ class Home extends React.Component {
             return <CheckboxPrompt
                         promptCheck={this.promptCheck}
                         handleModalToggle={this.handleModalToggle}
-                   ></CheckboxPrompt>
+                   >
+                   </CheckboxPrompt>
         } 
     };
 
@@ -361,18 +392,15 @@ class Home extends React.Component {
                 >
                 </WelcomeModalContent>  
             )
-        
     };
 
     //Increment the number of sets, reset the count of intervals and checks for this set
     newSet() {
-        console.log('%cThis is a new set!', 'color: DeepSkyBlue; font-size: 20px')
         this.setState({
             set: ++this.state.set,
             intervals: 0,
             checks: 0,
         }, () => {console.log('here we have it, state when a new set begins: ', this.state)})
-
     }
     
 
@@ -389,11 +417,9 @@ class Home extends React.Component {
                 >
                 </Sidebar>         
                 {this.state.checkboxPrompt ? this.renderCheckboxPrompt() : null} 
-                {this.state.changeTaskPrompt ? this.renderChangeTaskPrompt() : null}  
-                  
+                {this.state.changeTaskPrompt ? this.renderChangeTaskPrompt() : null}
                 <Tomato></Tomato>
                 <Timer
-
                     interval={this.timerID}
                     running={this.state.running}
                     startTimer={(e) => this.startTimer(e)}
@@ -401,9 +427,9 @@ class Home extends React.Component {
                     timeLeft={this.state.timeLeft}
                 ></Timer>
                 <Reset
-                    
                     resetClock={(e) => this.resetClock(e)}
-                ></Reset>
+                >
+                </Reset>
                 <Modal
                     timeLeft={this.state.timeLeft}
                     checkboxPrompt={this.state.checkboxPrompt}
