@@ -11,19 +11,15 @@ const Sidebar = (props) => {
                 <ul className="menu-list">
                     <li className="menu-list__item">
                         <h2 className="menu-list__heading">Current Task</h2>
-                        <p className="menu-task-name">{props.task}</p>
+                        <h3 className="menu-list__value">{props.task}</h3>
                     </li>
                     <li className="menu-list__item">
                         <h2 className="menu-list__heading">Set</h2>
-                        <p>{props.set + 1}</p>
+                        <h3 className="menu-list__value">{props.set + 1}</h3>
                     </li>
                     <li className="menu-list__item">
-    <h2 className="menu-list__heading">Interval</h2>
-                        <p>{props.intervals}/4</p>
-                    </li>
-                    <li className="menu-list__item">
-                        <h2 className="menu-list__heading">Break Period</h2>
-                        <p>5 minutes</p>
+                        <h2 className="menu-list__heading">Interval</h2>
+                        <h3 className="menu-list__value">{props.intervals}/4</h3>
                     </li>
                     <li className="menu-list__item">
                         <h2 className="menu-list__heading">Checks</h2>
@@ -36,7 +32,7 @@ const Sidebar = (props) => {
                         </div>
                     </li>
                 </ul>
-                <button className="clock-in-btn spin circle" onClick={(e) => props.clockIn(e)} >{props.clockedIn ? 'Clock Out' : 'Clock In'}</button>
+                <button className={!props.clockedIn ? "clock-in-btn spin circle blue" : "clock-in-btn spin circle red"} onClick={(e) => props.clockIn(e)} >{props.clockedIn ? 'Clock Out' : 'Clock In'}</button>
 
 
         </div>

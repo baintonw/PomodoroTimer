@@ -47,7 +47,14 @@
 
     &__heading {
         // font-size: 20rem;
+        text-decoration: uppercase;
+        font-weight: 100;
         margin-bottom: .8rem;
+    }
+
+    &__value {
+      color: white;
+      font-size: 3rem;
     }
 }
 
@@ -108,9 +115,9 @@
     height: 5em;
     padding: 0;
     
-    &:hover {
-      color: blue;
-    }
+    // &:hover {
+    //   color: blue;
+    // }
   
     &::before,
     &::after {
@@ -147,7 +154,14 @@
         border-left-width 0s linear 0.35s; // Solid edge post-rotation
     }
   }
-  
+  &.blue {
+    color: blue;
+  }
+
+  &.red {
+    color: red;
+  }
+
   &.circle {
     border-radius: 100%;
     box-shadow: none;
