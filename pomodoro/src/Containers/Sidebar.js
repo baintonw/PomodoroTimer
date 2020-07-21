@@ -10,12 +10,16 @@ const Sidebar = (props) => {
         <div className={props.menuIsOpen ? "menu open" : "menu"}>
                 <ul className="menu-list">
                     <li className="menu-list__item">
-                    <h2 className="menu-list__heading">Current Task</h2>
-                    <p className="menu-task-name">{props.task}</p>
+                        <h2 className="menu-list__heading">Current Task</h2>
+                        <p className="menu-task-name">{props.task}</p>
                     </li>
                     <li className="menu-list__item">
-                        <h2 className="menu-list__heading">Interval</h2>
-                        <p>25 minutes</p>
+                        <h2 className="menu-list__heading">Set</h2>
+                        <p>{props.set + 1}</p>
+                    </li>
+                    <li className="menu-list__item">
+    <h2 className="menu-list__heading">Interval</h2>
+                        <p>{props.intervals}/4</p>
                     </li>
                     <li className="menu-list__item">
                         <h2 className="menu-list__heading">Break Period</h2>

@@ -414,6 +414,8 @@ class Home extends React.Component {
                     handleCheck={(e) => this.handleCheck(e)}
                     menuIsOpen={this.state.menuIsOpen}
                     task={this.state.task}
+                    set={this.state.set}
+                    intervals={this.state.intervals}
                 >
                 </Sidebar>         
                 {this.state.checkboxPrompt ? this.renderCheckboxPrompt() : null} 
