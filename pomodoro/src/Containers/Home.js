@@ -46,13 +46,13 @@ class Home extends React.Component {
         allTasks: [],
         timeLeft: {
             hours: 0,
-            minutes: 0,
-            seconds: 1,
+            minutes: 25,
+            seconds: 0,
         },
         set: 0,
-        intervals: 4,
+        intervals: 0,
         totalIntervals: 0,
-        checks: 3,
+        checks: 0,
         checkboxPrompt: false,
         changeTaskPrompt: false,
         countDown: null,
@@ -284,11 +284,14 @@ class Home extends React.Component {
         //start a five minute break
         const shortBreak = 300000;
         //start a twenty five minute break
-        // const longBreak = 1500000;
-        const longBreak = 5000
+        const longBreak = 1500000;
+        // const longBreak = 5000
         if(this.state.break) {
-            setTimeout(() => this.toggleBreak(), 1000);
-            setTimeout(() => this.startTimer(), 1000);
+            // setTimeout(() => this.toggleBreak(), 1000);
+            // setTimeout(() => this.startTimer(), 1000);
+            setTimeout(() => this.toggleBreak(), shortBreak);
+            setTimeout(() => this.startTimer(), shortBreak);
+
             this.incrementTotalIntervals()
         }
         //this handles most of the transition from an old set into a new set
