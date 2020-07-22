@@ -46,8 +46,8 @@ class Home extends React.Component {
         allTasks: [],
         timeLeft: {
             hours: 0,
-            minutes: 25,
-            seconds: 0,
+            minutes: 0,
+            seconds: 10,
         },
         set: 0,
         intervals: 0,
@@ -134,9 +134,10 @@ class Home extends React.Component {
 
     //This triggers when clock reaches 0 (hours, minutes, and seconds)
     timesUp() {
-        this.promptCheck();
         this.playSound();
+        this.promptCheck();
         this.stopTimer();
+        this.incrementIntervals()
 
     };
 
@@ -187,8 +188,8 @@ class Home extends React.Component {
             ...this.state,
             timeLeft: {
                 hours: 0,
-                minutes: 25,
-                seconds: 0,
+                minutes: 0,
+                seconds: 10,
             }
          })
          
@@ -287,10 +288,10 @@ class Home extends React.Component {
         const longBreak = 1500000;
         // const longBreak = 5000
         if(this.state.break) {
-            // setTimeout(() => this.toggleBreak(), 1000);
-            // setTimeout(() => this.startTimer(), 1000);
-            setTimeout(() => this.toggleBreak(), shortBreak);
-            setTimeout(() => this.startTimer(), shortBreak);
+            setTimeout(() => this.toggleBreak(), 1000);
+            setTimeout(() => this.startTimer(), 1000);
+            // setTimeout(() => this.toggleBreak(), shortBreak);
+            // setTimeout(() => this.startTimer(), shortBreak);
 
             this.incrementTotalIntervals()
         }
@@ -313,6 +314,19 @@ class Home extends React.Component {
             pickATask: !this.state.pickATask
         })
     };
+
+    //increments interval
+    incrementIntervals() {
+        if(this.state.intervals > 3) {
+            this.setState({
+                intervals: 1,
+            })
+        } else {
+            this.setState({
+                intervals: ++this.state.intervals,
+            })
+        }
+    }
 
     //handle checkbox checking - triggers break after box is checked
     handleCheck(e) {
