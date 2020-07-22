@@ -100,7 +100,6 @@ class Home extends React.Component {
     //set single task in state
     setTask(e) {
         e.preventDefault();
-
         this.setState({
             [e.target.name]: e.currentTarget.value,
         });
@@ -288,6 +287,7 @@ class Home extends React.Component {
         const longBreak = 1500000;
         // const longBreak = 5000
         if(this.state.break) {
+            console.log('%cShort break is hitting! Here is state: ', this.state)
             setTimeout(() => this.toggleBreak(), 1000);
             setTimeout(() => this.startTimer(), 1000);
             // setTimeout(() => this.toggleBreak(), shortBreak);
@@ -297,11 +297,13 @@ class Home extends React.Component {
         }
         //this handles most of the transition from an old set into a new set
         if(this.state.longBreak) {
-            const longBreakInterval = setInterval(() => this.count(), 1000) 
-            setTimeout(() => clearInterval(longBreakInterval), longBreak);
-            setTimeout(() => this.toggleBreak(), longBreak);
-            setTimeout(() => this.resetClock(), longBreak);
-            setTimeout(() => this.newSet(), longBreak);
+            console.log('%cThis is where we are at LONG BREAK: ', this.state)
+
+           
+            this.newSet()
+            //this is how i'm trying to end the break
+            setTimeout(() => this.toggleBreak('long'), 9000);
+            // setTimeout(() => this.resetClock(), 9000);
             this.incrementTotalIntervals()
 
         }
@@ -345,13 +347,22 @@ class Home extends React.Component {
         
         //If the checkbox prompt is out and a box is checked
         if(this.state.checkboxPrompt) {
+            debugger
+            //reset the clock
             this.resetClock()
             //turn off the prompt
             this.promptCheck()
             //turn on the modal
             this.handleModalToggle()
+
             //toggle break in state
-            this.toggleBreak()
+            if(this.state.intervals === 4 && this.state.checks === 4) {
+                console.log('hit long break in check')
+                this.toggleBreak('long')
+            } else {
+                console.log('hit short break in check')
+                this.toggleBreak('short')
+            }
 
             console.log('this is the state of break in checkboxprompt: ', this.state.break)
         }
@@ -360,19 +371,22 @@ class Home extends React.Component {
 
     //set break to true/false and turn the modal on or off
     toggleBreak() {
-
-        //we hit this
-        if(this.state.intervals === 4 && this.state.checks === 4) {
+        //long break
+        if('long' && this.state.intervals === 4 && this.state.checks === 4) {
+            console.log('LONG BREAK in state: ', this.state.longBreak)
             this.setState({
                 longBreak: !this.state.longBreak,
                 modalIsOpen: !this.state.modalIsOpen,
             }, () => {
                 if(this.state.longBreak) {
+
                     //set the modal to toggle off in 5 minutes
                     this.startBreak()
                 }
             })
-        } else {
+        //short break
+        } else if('short') {
+            console.log('SHORT BREAK in state: ', this.state.break)
             //set 'break' to true in state
             this.setState({
                 break: !this.state.break,
