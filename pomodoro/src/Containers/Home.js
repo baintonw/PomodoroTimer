@@ -96,6 +96,17 @@ class Home extends React.Component {
             modalIsOpen: false,
         });
     };
+    
+    //Clear all checkboxes
+    clearChecks() {
+        const checkboxes = document.querySelectorAll('.checkbox-container__checkbox');
+        checkboxes.forEach(checkbox => {
+            if(checkbox.checked) {
+                checkbox.checked = false
+            }
+        })
+        // console.log(checkboxes)
+    }
 
     //set single task in state
     setTask(e) {
@@ -159,7 +170,6 @@ class Home extends React.Component {
             });
         };
     }
-    
     //Start an interval, calling count function every second (1000ms)
     startTimer() {
         this.timerID = setInterval(() => {this.count()}, 1000)
@@ -345,13 +355,12 @@ class Home extends React.Component {
         } else {
             this.setState({
                 checks: --this.state.checks,
-            })
+            }, ()=> console.log('this is how many checks: ', this.state.checks))
         }   
         
         //If the checkbox prompt is out and a box is checked
         if(this.state.checkboxPrompt) {
             debugger
-
             //reset the clock
             this.resetClock()
             //turn off the prompt
@@ -432,6 +441,7 @@ class Home extends React.Component {
 
     //Increment the number of sets, reset the count of intervals and checks for this set
     newSet() {
+        this.clearChecks()
         this.setState({
             set: ++this.state.set,
             intervals: 0,
@@ -482,6 +492,12 @@ class Home extends React.Component {
                     handleModalToggle={(e) => this.handleModalToggle(e)} 
                     modalIsOpen={this.state.modalIsOpen}>
                 </Modal>
+                <button onClick={(e) => this.clearChecks(e)}
+                        style={{
+                            position: `absolute`,
+                            left: `25rem`,
+                        }}
+                >Clear Checks!</button>
                 <audio  src={this.state.audio.playing ? this.state.audio.src : null} 
                         type="audio/mp3" 
                         controls 
