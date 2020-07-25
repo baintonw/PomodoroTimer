@@ -50,7 +50,7 @@ class Home extends React.Component {
             seconds: 10,
         },
         set: 0,
-        intervals: 3,
+        intervals: 0,
         totalIntervals: 0,
         checks: 0,
         checkboxPrompt: false,
@@ -64,7 +64,7 @@ class Home extends React.Component {
     };
 
 
-    //Handling functions
+    /*  Handling functions  */
 
     //Toggles menu open or closed
     handleMenuToggle(e) {
@@ -105,7 +105,6 @@ class Home extends React.Component {
                 checkbox.checked = false
             }
         })
-        // console.log(checkboxes)
     }
 
     //set single task in state
@@ -116,7 +115,27 @@ class Home extends React.Component {
         });
     };
 
-    //CLOCK FUNCTIONS
+    /* CLOCK FUNCTIONS */
+
+    //Decrease clock by minutes or seconds depending on state
+    count() {
+        let { hours, minutes, seconds } = this.state.timeLeft;
+        if(hours === 0 && minutes === 0 && seconds === 0) {
+            this.timesUp();
+            return
+        };
+        if(seconds > 0) {
+            this.decrementSeconds();
+        } else if(seconds === 0) {
+            this.decrementMinutes();
+            this.setState({
+                timeLeft: {
+                    ...this.state.timeLeft,
+                    seconds: 59,
+                }
+            });
+        };
+    }
      
     //Decreases seconds in state by one
     decrementSeconds() {
@@ -142,34 +161,6 @@ class Home extends React.Component {
         })
     };
 
-    //This triggers when clock reaches 0 (hours, minutes, and seconds)
-    timesUp() {
-        this.playSound();
-        this.promptCheck();
-        this.stopTimer();
-        this.incrementIntervals()
-
-    };
-
-    //Decrease clock by minutes or seconds depending on state
-    count() {
-        let { hours, minutes, seconds } = this.state.timeLeft;
-        if(hours === 0 && minutes === 0 && seconds === 0) {
-            this.timesUp();
-            return
-        };
-        if(seconds > 0) {
-            this.decrementSeconds();
-        } else if(seconds === 0) {
-            this.decrementMinutes();
-            this.setState({
-                timeLeft: {
-                    ...this.state.timeLeft,
-                    seconds: 59,
-                }
-            });
-        };
-    }
     //Start an interval, calling count function every second (1000ms)
     startTimer() {
         this.timerID = setInterval(() => {this.count()}, 1000)
@@ -178,12 +169,22 @@ class Home extends React.Component {
         })
         
     };
+
     //Clear counting interval
     stopTimer() {
         clearInterval(this.timerID)        
         this.setState({
             running: false,
         })
+    };
+
+    //This triggers when clock reaches 0 (hours, minutes, and seconds)
+    timesUp() {
+        this.playSound();
+        this.promptCheck();
+        this.stopTimer();
+        this.incrementIntervals()
+
     };
 
     //Reset clock in state to default
@@ -204,6 +205,8 @@ class Home extends React.Component {
          
     };
 
+    /* Media */
+    
     //Audio
     playSound() {
         this.setState({
@@ -228,9 +231,7 @@ class Home extends React.Component {
         })
     };
 
-    /*
-    Time functions
-    */
+    /* TimeSHEET functions */
 
     formatHour(hour) {
         if(hour > 12) {
@@ -286,6 +287,8 @@ class Home extends React.Component {
         
     }
 
+    /* Interval and set functions */
+
     //set timeout for modal to close after set amount of time
     //this function is called in toggleBreak, if break is set to true in state
     startBreak() {
@@ -310,14 +313,10 @@ class Home extends React.Component {
         if(this.state.longBreak) {
             console.log('%cThis is where we are at LONG BREAK: ', this.state)
             
-            debugger
-
-           
-            this.newSet()
-            //this is how i'm trying to end the break
+            debugger           
+            this.newSet();
             setTimeout(() => this.toggleBreak('long'), 9000);
-            // setTimeout(() => this.resetClock(), 9000);
-            this.incrementTotalIntervals()
+            this.incrementTotalIntervals();
 
         }
         
@@ -341,6 +340,16 @@ class Home extends React.Component {
                 intervals: ++this.state.intervals,
             })
         }
+    }
+
+    //Increment the number of sets, reset the count of intervals and checks for this set
+    newSet() {
+        this.clearChecks() 
+        this.setState({
+            set: ++this.state.set,
+            intervals: 0,
+            checks: 0,
+        }, () => {console.log('here we have it, state when a new set begins: ', this.state)})
     }
 
     //handle checkbox checking - triggers break after box is checked
@@ -370,11 +379,9 @@ class Home extends React.Component {
             //toggle break in state
             if(this.state.intervals === 4 && this.state.checks === 4) {
                 debugger
-                console.log('hit long break in check')
                 this.toggleBreak('long')
             } else {
                 debugger
-                console.log('hit short break in check')
                 this.toggleBreak('short')
             }
             console.log('this is the state of break in checkboxprompt: ', this.state.break)
@@ -393,7 +400,6 @@ class Home extends React.Component {
             }, () => {
                 console.log('long break was toggled, this is long break: ', this.state.longBreak)
                 if(this.state.longBreak) {
-
                     this.startBreak()
                 }
             })
@@ -414,7 +420,9 @@ class Home extends React.Component {
           } 
     };
 
-    //Rendering functions
+    /* Rendering functions */
+
+    //Checkbox render
     renderCheckboxPrompt() {
         if(this.state.checkboxPrompt) {
             return <CheckboxPrompt
@@ -425,6 +433,8 @@ class Home extends React.Component {
         } 
     };
 
+
+    //'Would you like to change your task?' render
     renderChangeTaskPrompt() {
         
             return (
@@ -439,15 +449,7 @@ class Home extends React.Component {
             )
     };
 
-    //Increment the number of sets, reset the count of intervals and checks for this set
-    newSet() {
-        this.clearChecks()
-        this.setState({
-            set: ++this.state.set,
-            intervals: 0,
-            checks: 0,
-        }, () => {console.log('here we have it, state when a new set begins: ', this.state)})
-    }
+
     
 
     render() {
@@ -492,12 +494,6 @@ class Home extends React.Component {
                     handleModalToggle={(e) => this.handleModalToggle(e)} 
                     modalIsOpen={this.state.modalIsOpen}>
                 </Modal>
-                <button onClick={(e) => this.clearChecks(e)}
-                        style={{
-                            position: `absolute`,
-                            left: `25rem`,
-                        }}
-                >Clear Checks!</button>
                 <audio  src={this.state.audio.playing ? this.state.audio.src : null} 
                         type="audio/mp3" 
                         controls 
