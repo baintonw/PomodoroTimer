@@ -1,14 +1,17 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import tomato from '../assets/tomato.svg';
+import React from 'react'
+import ReactDOM from 'react-dom'
+import tomato from '../assets/tomato.svg'
+
+import { BrowserRouter as Router, Link, Route } from 'react-router-dom'
 
 //Components
 import Tomato from '../Components/Tomato'
 import Timer from '../Components/Timer'
 import Reset from '../Components/Reset'
 import Audio from '../Components/Audio'
+import Timesheet from '../Components/Timesheet'
 
-import CheckboxPrompt from '../Components/CheckboxPrompt.js'
+import CheckboxPrompt from '../Components/CheckboxPrompt'
 
 import WelcomeModalContent from '../Components/WelcomeModalContent'
 
@@ -456,6 +459,15 @@ class Home extends React.Component {
     render() {
         return(
             <div className="home-page">
+                {/* <Link to="/timesheet">
+                    Make Hello disappear
+                </Link>
+                <Route exact={true} path="/" render={() => (
+                    <h2>This only appears on the root url!</h2>
+                )}> */}
+                </Route>
+
+
                 <img onClick={(e) => this.handleMenuToggle(e)} className={this.state.menuIsOpen ? "toggle-btn open" : "toggle-btn"} src={CancelCircle}></img>
                 <Sidebar
                     formatDateToString={(e) => this.formatDateToString(e)}
