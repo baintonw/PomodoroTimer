@@ -6,9 +6,15 @@ import './sidebar.scss'
 
 
 const Sidebar = (props) => {
+    console.log('clock in time in Sidebar: ', props.clockInTime)
     return (
         <div className={props.menuIsOpen ? "menu open" : "menu"}>
+                {/* <h2>{props.formatDateToString(props.clockInTime)}</h2> */}
                 <ul className="menu-list">
+                    <li className="menu-list__item">
+                        <h2 className="menu-list__heading">Clock In Time</h2>
+                        <h3 className="menu-list__value">{props.clockInTime ? props.formatDateToString(props.clockInTime) : "Not clocked in"}</h3>
+                    </li>
                     <li className="menu-list__item">
                         <h2 className="menu-list__heading">Current Task</h2>
                         <h3 className="menu-list__value">{props.task}</h3>

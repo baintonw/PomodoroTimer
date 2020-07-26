@@ -265,7 +265,7 @@ class Home extends React.Component {
         const clockInDateObj = new Date(now.getFullYear(), (now.getMonth() - 1), now.getDate(), now.getHours(), now.getSeconds())
         const clockInString = this.formatDateToString(now)
         
-        console.log('this is the clock in STRING: ', clockInString)
+        // console.log('this is the clock in STRING: ', clockInString)
         
         if(!this.state.clockedIn) {
             this.setState({
@@ -274,7 +274,7 @@ class Home extends React.Component {
                     ...this.state.workDay,
                     clockIn: clockInDateObj, 
                 }
-            }, () => {console.log('clockIn in state: ', this.state.workDay.clockIn)})
+            }, () => {this.timeToString()})
         } else {
             this.setState({
                 clockedIn: false,
@@ -282,9 +282,14 @@ class Home extends React.Component {
                     ...this.state.workDay,
                     clockOut: clockInDateObj, 
                 }
-            }, () => {console.log('clockOut in state: ', this.state.workDay.clockOut)})
+            }, () => {console.log('this.state.workDay.clockOut: ', this.state.workDay.clockOut)})
         }
-        
+    }
+
+    timeToString() {
+        const clockInObj = this.state.workDay.clockIn;
+
+        console.log('called in timeToString --> clockIn object: ', clockInObj)
     }
 
     /* Interval and set functions */
@@ -449,14 +454,13 @@ class Home extends React.Component {
             )
     };
 
-
-    
-
     render() {
         return(
             <div className="home-page">
                 <img onClick={(e) => this.handleMenuToggle(e)} className={this.state.menuIsOpen ? "toggle-btn open" : "toggle-btn"} src={CancelCircle}></img>
                 <Sidebar
+                    formatDateToString={(e) => this.formatDateToString(e)}
+                    clockInTime={this.state.workDay.clockIn}
                     clockedIn={this.state.clockedIn}
                     clockIn={(e) => this.clockIn(e)}
                     handleCheck={(e) => this.handleCheck(e)}
@@ -506,8 +510,6 @@ class Home extends React.Component {
             </div>
         )
     }
-    
-
 }
 
 export default Home
