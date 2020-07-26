@@ -239,7 +239,14 @@ class Home extends React.Component {
         } else {
             return hour
         }
+    }
 
+    amOrPMString(hour) {
+        if(hour >= 12 && hour < 24) {
+            return ' AM'
+        } else {
+            return ' PM'
+        }
     }
 
     formatDateToString(time) {
@@ -248,13 +255,11 @@ class Home extends React.Component {
         const hour = this.formatHour(time.getHours())
         const minutes = time.getMinutes()
 
-        const clockInTimeString = `${hour}:${minutes} - ${month}/${date}`
-
+        const clockInTimeString = `${hour}:${minutes}${this.amOrPMString(hour)}`
         return clockInTimeString
     }
 
     //Clock In
-
     clockIn() {
         //Desired format --> HH:MM - MM/DD 
         //Therefore I need formatted hours, formatted minutes, months, and the date
@@ -274,7 +279,7 @@ class Home extends React.Component {
                     ...this.state.workDay,
                     clockIn: clockInDateObj, 
                 }
-            }, () => {this.timeToString()})
+            }, () => {console.log('this.state.workDay.clockOut: ', this.state.workDay.clockIn)})
         } else {
             this.setState({
                 clockedIn: false,
@@ -284,12 +289,6 @@ class Home extends React.Component {
                 }
             }, () => {console.log('this.state.workDay.clockOut: ', this.state.workDay.clockOut)})
         }
-    }
-
-    timeToString() {
-        const clockInObj = this.state.workDay.clockIn;
-
-        console.log('called in timeToString --> clockIn object: ', clockInObj)
     }
 
     /* Interval and set functions */
