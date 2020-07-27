@@ -268,9 +268,7 @@ class Home extends React.Component {
         //Therefore I need formatted hours, formatted minutes, months, and the date
         // const clockInTime = new Date()
         const now = new Date()
-        
-
-        const clockInDateObj = new Date(now.getFullYear(), (now.getMonth() - 1), now.getDate(), now.getHours(), now.getSeconds())
+        const clockInDateObj = new Date(now.getFullYear(), (now.getMonth() - 1), now.getDate(), now.getHours(), now.getMinutes(), now.getSeconds())
         const clockInString = this.formatDateToString(now)
         
         // console.log('this is the clock in STRING: ', clockInString)
@@ -459,14 +457,17 @@ class Home extends React.Component {
     render() {
         return(
             <div className="home-page">
+
                 {/* <Link to="/timesheet">
                     Make Hello disappear
                 </Link>
+
                 <Route exact={true} path="/" render={() => (
                     <h2>This only appears on the root url!</h2>
-                )}> */}
-                </Route>
+                )}> */
+                }
 
+                {/* </Route> */}
 
                 <img onClick={(e) => this.handleMenuToggle(e)} className={this.state.menuIsOpen ? "toggle-btn open" : "toggle-btn"} src={CancelCircle}></img>
                 <Sidebar
