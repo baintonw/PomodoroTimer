@@ -10,6 +10,7 @@ import Timer from '../Components/Timer'
 import Reset from '../Components/Reset'
 import Audio from '../Components/Audio'
 import Timesheet from '../Components/Timesheet'
+import Set from '../Components/Set'
 
 import CheckboxPrompt from '../Components/CheckboxPrompt'
 
@@ -457,7 +458,6 @@ class Home extends React.Component {
     render() {
         return(
             <div className="home-page">
-
                 {/* <Link to="/timesheet">
                     Make Hello disappear
                 </Link>
