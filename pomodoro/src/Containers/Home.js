@@ -50,8 +50,8 @@ class Home extends React.Component {
         allTasks: [],
         timeLeft: {
             hours: 0,
-            minutes: 1,
-            seconds: 0,
+            minutes: 0,
+            seconds: 2,
         },
         set: 0,
         intervals: 0,
@@ -223,6 +223,14 @@ class Home extends React.Component {
             }
         })
     };
+
+    resetSound() {
+        this.setState({
+            audio: {
+                playing: false,
+            }
+        }, () => console.log('reseting audio, this.state.audio: ', this.state.audio))
+    }
 
     //Increments totalIntervals in state
     incrementTotalIntervals() {
@@ -519,7 +527,7 @@ class Home extends React.Component {
                     handleModalToggle={(e) => this.handleModalToggle(e)} 
                     modalIsOpen={this.state.modalIsOpen}>
                 </Modal>
-                <audio  src={this.state.audio.playing ? this.state.audio.src : null} 
+                <audio  onEnded={(e) => this.resetSound(e)} src={this.state.audio.playing ? this.state.audio.src : null} 
                         type="audio/mp3" 
                         controls 
                         autoPlay
