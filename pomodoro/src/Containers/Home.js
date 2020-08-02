@@ -50,8 +50,8 @@ class Home extends React.Component {
         allTasks: [],
         timeLeft: {
             hours: 0,
-            minutes: 0,
-            seconds: 10,
+            minutes: 1,
+            seconds: 0,
         },
         set: 0,
         intervals: 0,
@@ -124,12 +124,14 @@ class Home extends React.Component {
     //Decrease clock by minutes or seconds depending on state
     count() {
         let { hours, minutes, seconds } = this.state.timeLeft;
-        if(hours === 0 && minutes === 0 && seconds === 0) {
+        console.log('timer in state: ', this.state.timeLeft)
+        if(minutes === 0 && seconds === 0) {
+            console.log('hours, minutes, and seconds are 0')
             this.timesUp();
             return
-        };
-        if(seconds > 0) {
+        } else if(seconds > 0) {
             this.decrementSeconds();
+            return
         } else if(seconds === 0) {
             this.decrementMinutes();
             this.setState({
@@ -158,8 +160,9 @@ class Home extends React.Component {
     decrementMinutes() {
         let { timeLeft } = this.state;
         this.setState({
-            ...this.state,
+            
             timeLeft: {
+                ...this.state.timeLeft,
                 minutes: --this.state.timeLeft.minutes,  
             }
         })
@@ -202,8 +205,8 @@ class Home extends React.Component {
             ...this.state,
             timeLeft: {
                 hours: 0,
-                minutes: 0,
-                seconds: 10,
+                minutes: 25,
+                seconds: 0,
             }
          })
          
@@ -455,7 +458,12 @@ class Home extends React.Component {
             )
     };
 
+    checkState(e) {
+        console.log('This is timeLeft in state', this.state.timeLeft)
+    }
+
     render() {
+        console.log('this.state.timeLeft', this.state.timeLeft)
         return(
             <div className="home-page">
                 {/* <Link to="/timesheet">
@@ -485,6 +493,7 @@ class Home extends React.Component {
                 {this.state.checkboxPrompt ? this.renderCheckboxPrompt() : null} 
                 {this.state.changeTaskPrompt ? this.renderChangeTaskPrompt() : null}
                 <Tomato></Tomato>
+                <button onClick={(e) => this.checkState(e)}>Click Me For State</button>
                 <Timer
                     interval={this.timerID}
                     running={this.state.running}
