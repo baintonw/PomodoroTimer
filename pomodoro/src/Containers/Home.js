@@ -50,8 +50,8 @@ class Home extends React.Component {
         allTasks: [],
         timeLeft: {
             hours: 0,
-            minutes: 0,
-            seconds: 2,
+            minutes: 25,
+            seconds: 0,
         },
         set: 0,
         intervals: 0,
@@ -319,8 +319,8 @@ class Home extends React.Component {
         if(this.state.break) {
             debugger
             console.log('%cShort break is hitting! Here is state: ', this.state)
-            setTimeout(() => this.toggleBreak('short'), 1000);
-            setTimeout(() => this.startTimer(), 1000);
+            setTimeout(() => this.toggleBreak('short'), shortBreak);
+            setTimeout(() => this.startTimer(), shortBreak);
             // setTimeout(() => this.toggleBreak(), shortBreak);
             // setTimeout(() => this.startTimer(), shortBreak);
 
@@ -332,7 +332,7 @@ class Home extends React.Component {
             
             debugger           
             this.newSet();
-            setTimeout(() => this.toggleBreak('long'), 9000);
+            setTimeout(() => this.toggleBreak('long'), longBreak);
             this.incrementTotalIntervals();
 
         }
@@ -501,7 +501,6 @@ class Home extends React.Component {
                 {this.state.checkboxPrompt ? this.renderCheckboxPrompt() : null} 
                 {this.state.changeTaskPrompt ? this.renderChangeTaskPrompt() : null}
                 <Tomato></Tomato>
-                <button onClick={(e) => this.checkState(e)}>Click Me For State</button>
                 <Timer
                     interval={this.timerID}
                     running={this.state.running}
