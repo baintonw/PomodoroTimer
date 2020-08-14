@@ -1,8 +1,13 @@
 import React from 'react';
 
+import { Link } from 'react-router-dom';
+
 
 //styles
 import './sidebar.scss'
+
+//components
+import Timesheet from '../Components/Timesheet'
 
 
 const Sidebar = (props) => {
@@ -39,7 +44,7 @@ const Sidebar = (props) => {
                     </li>
                 </ul>
                 <button className={!props.clockedIn ? "clock-in-btn spin circle blue" : "clock-in-btn spin circle red"} onClick={(e) => props.clockIn(e)} >{props.clockedIn ? 'Clock Out' : 'Clock In'}</button>
-
+                <Link to="timesheet">Timesheet</Link>
 
         </div>
         

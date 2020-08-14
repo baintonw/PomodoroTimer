@@ -1,20 +1,17 @@
 import React from 'react'
 
+//Components
+import Set from './Set'
+
 const Timesheet = (props) => {
     return (
-        <div>
-            <table>
-                <tr>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-            </table>
+        <div className="timesheet">
+            <Set number="1"></Set>
+            <Set number="2"></Set>
+            <Set number="3"></Set>
+            <Set number="4"></Set>
+            <Set number="5"></Set>
+
         </div>
     )
 }

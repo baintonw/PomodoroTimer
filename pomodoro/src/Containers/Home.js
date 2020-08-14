@@ -484,7 +484,6 @@ class Home extends React.Component {
                 }
 
                 {/* </Route> */}
-
                 <img onClick={(e) => this.handleMenuToggle(e)} className={this.state.menuIsOpen ? "toggle-btn open" : "toggle-btn"} src={CancelCircle}></img>
                 <Sidebar
                     formatDateToString={(e) => this.formatDateToString(e)}
