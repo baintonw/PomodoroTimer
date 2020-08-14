@@ -17,6 +17,8 @@
     &__table {
         margin: 0 auto 2rem;
         text-align:center;
+        padding: 2em;
+        border-spacing: 0;
         border: 1px solid black;
 
         transform: scale(1) translate(0,0);
@@ -33,7 +35,7 @@
     &__heading {
         border-top: 1.4em solid transparent;
         font-size: 1.4rem;
-        border-bottom: 1px solid blueviolet;
+        border-bottom: 4px solid black;
     }
 
     &:hover {
@@ -53,7 +55,7 @@
 
 
 tbody tr td {
-
+    text-align: center;
     border: 1em solid transparent;
 }
 
