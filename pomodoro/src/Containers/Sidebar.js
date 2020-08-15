@@ -44,7 +44,15 @@ const Sidebar = (props) => {
                     </li>
                 </ul>
                 <button className={!props.clockedIn ? "clock-in-btn spin circle blue" : "clock-in-btn spin circle red"} onClick={(e) => props.clockIn(e)} >{props.clockedIn ? 'Clock Out' : 'Clock In'}</button>
-                <Link to="timesheet">Timesheet</Link>
+                <Link to={{
+                    pathname: '/timesheet',
+                    state: {
+                        user: 'Will',
+                        age: 32,
+                    }
+                }}
+
+                >Timesheet</Link>
 
         </div>
         

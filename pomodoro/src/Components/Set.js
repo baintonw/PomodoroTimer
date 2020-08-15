@@ -9,8 +9,8 @@ const Set = (props) => {
             <h2 className="set__number">{props.number}</h2>
             <table className="set__table">
                 <thead>
-                    <tr className="set__row">
-                        <th className="set__heading">Number</th>
+                    <tr className="set__row heading">
+                        <th className="set__heading">Interval</th>
                         <th className="set__heading">Start</th>
                         <th className="set__heading">End</th>
                         <th className="set__heading">Task</th>

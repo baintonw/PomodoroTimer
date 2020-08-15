@@ -486,6 +486,7 @@ class Home extends React.Component {
                 {/* </Route> */}
                 <img onClick={(e) => this.handleMenuToggle(e)} className={this.state.menuIsOpen ? "toggle-btn open" : "toggle-btn"} src={CancelCircle}></img>
                 <Sidebar
+                    user={this.state.user}
                     formatDateToString={(e) => this.formatDateToString(e)}
                     clockInTime={this.state.workDay.clockIn}
                     clockedIn={this.state.clockedIn}
