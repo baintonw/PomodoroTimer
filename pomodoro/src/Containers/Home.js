@@ -38,6 +38,12 @@ class Home extends React.Component {
 
     state = {
         user: 'Will',
+        
+        // session: {
+        //     user: this.state.user,
+        //     sets: [],
+        // },
+       
         clockedIn: false,
         workDay: {
             clockIn: null,

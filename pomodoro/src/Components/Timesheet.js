@@ -13,10 +13,8 @@ const Timesheet = (props) => {
     return (
         <div className="timesheet">
             <h1 className="heading">Timesheet - 08/14/20</h1>
-    <h2>User: {props.location.state.user}</h2>
-    <h2>User: {props.location.state.age}</h2>
-
-            {/* <h2>{props.location.state.user}</h2> */}
+            <h2>User: {props.location.state.user}</h2>
+            <h2>Age: {props.location.state.age}</h2>
             <Set number="1"></Set>
             <Set number="2"></Set>
             <Set number="3"></Set>
