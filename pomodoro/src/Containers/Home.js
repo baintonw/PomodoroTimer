@@ -38,11 +38,44 @@ class Home extends React.Component {
 
     state = {
         user: 'Will',
-        
-        // session: {
-        //     user: this.state.user,
-        //     sets: [],
-        // },
+
+        session: {
+            user: 'Will',
+            sets: [
+                {
+                    number: 1,
+                    intervals: [
+                        {
+                            number: 1,
+                        },
+                        {
+                            number: 2,
+                        },
+                        {
+                            number: 3,
+                        },
+                        {
+                            number: 4,
+                        }
+                    ],
+                },
+                {
+                    number: 2,
+                    intervals: [
+                        {
+                            number: 1,
+                        },
+                        {
+                            number: 2,
+                        },
+                        {
+                            number: 3,
+                        }
+                    ],
+                }
+            ],
+
+        },
        
         clockedIn: false,
         workDay: {
@@ -477,7 +510,8 @@ class Home extends React.Component {
     }
 
     render() {
-        console.log('this.state.timeLeft', this.state.timeLeft)
+        // console.log('this.state.timeLeft', this.state.timeLeft)
+        console.log('this.state.session: ',  this.state.session)
         return(
             <div className="home-page">
                 {/* <Link to="/timesheet">
