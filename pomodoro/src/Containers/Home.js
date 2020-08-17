@@ -158,6 +158,18 @@ class Home extends React.Component {
         });
     };
 
+
+    ///////////////////////////////////////////////////
+    /*
+        
+    //Add completed set to completedSets in state
+
+    //Add completed interval to completedIntervals in state
+
+     */
+    ///////////////////////////////////////////////////
+    
+
     /* CLOCK FUNCTIONS */
 
     //Decrease clock by minutes or seconds depending on state
