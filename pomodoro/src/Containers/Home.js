@@ -168,7 +168,7 @@ class Home extends React.Component {
 
      */
     ///////////////////////////////////////////////////
-    
+
 
     /* CLOCK FUNCTIONS */
 
@@ -398,6 +398,7 @@ class Home extends React.Component {
     };
 
     //increments interval
+    // increment the interval COUNTS
     incrementIntervals() {
         if(this.state.intervals > 3) {
             this.setState({
@@ -412,7 +413,7 @@ class Home extends React.Component {
 
     //Increment the number of sets, reset the count of intervals and checks for this set
     newSet() {
-        this.clearChecks() 
+        this.clearChecks()
         this.setState({
             set: ++this.state.set,
             intervals: 0,
