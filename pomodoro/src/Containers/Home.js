@@ -47,36 +47,14 @@ class Home extends React.Component {
                     intervals: [
                         {
                             number: 1,
-                        },
-                        {
-                            number: 2,
-                        },
-                        {
-                            number: 3,
-                        },
-                        {
-                            number: 4,
-                        }
-                    ],
-                },
-                {
-                    number: 2,
-                    intervals: [
-                        {
-                            number: 1,
-                        },
-                        {
-                            number: 2,
-                        },
-                        {
-                            number: 3,
+                            start: new Date(),
+                            end: new Date(),
+                            task: "String",
                         }
                     ],
                 }
-            ],
-
+            ]
         },
-       
         clockedIn: false,
         workDay: {
             clockIn: null,
