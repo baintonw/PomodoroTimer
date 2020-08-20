@@ -416,27 +416,31 @@ class Home extends React.Component {
 
     //Add completed interval to completedIntervals in state
 // This does not work
-    addCompletedInterval() {
-        const newInterval = {
-          number: 1,
-          start: new Date(),
-          end: new Date(),
-          task: 'Centering the div'
-        };
+    // addCompletedInterval() {
+    //     console.log('Now adding completed interval...')
+    //     //create the new interval to be added
+    //     const newInterval = {
+    //       number: 1,
+    //       start: new Date(),
+    //       end: new Date(),
+    //       task: 'Centering the div'
+    //     };
 
+    //     //create copy of last set in state
+    //     const lastSetCopy = this.state.session.sets[this.state.session.sets.length - 1]
+    //     // push newly created interval to intervals array on that set
+    //     lastSetCopy.intervals.push(newInterval)
+    //     this.setState({
+    //         ...this.state,
+    //         session: {
+    //             sets: [
+    //                 ...this.state.session.sets,
+    //                 lastSetCopy
+    //             ]
+    //         }
+    //     }, () => console.log(this.state.session))
         
-        this.setState({
-            ...this.state,
-            session: {
-                ...this.state.session,
-                sets: [
-                    ...this.state.session.sets,
-                    this.state.session.sets[this.state.session.sets.length - 1].intervals.push(newInterval)
-
-                ],
-            }
-        })
-    }
+    // }
 
 
 
@@ -570,7 +574,7 @@ class Home extends React.Component {
                 >
                 </Reset>
                 <button onClick={() => this.addCompletedSet()}>Add completed set</button>
-                <button onClick={() => this.addCompletedSet()}>Add completed interval</button>
+                <button onClick={() => this.addCompletedInterval()}>Add completed interval</button>
 
                 <Modal
                     timeLeft={this.state.timeLeft}
