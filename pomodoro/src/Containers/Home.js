@@ -175,9 +175,7 @@ class Home extends React.Component {
     //Decrease clock by minutes or seconds depending on state
     count() {
         let { hours, minutes, seconds } = this.state.timeLeft;
-        console.log('timer in state: ', this.state.timeLeft)
         if(minutes === 0 && seconds === 0) {
-            console.log('hours, minutes, and seconds are 0')
             this.timesUp();
             return
         } else if(seconds > 0) {
@@ -196,7 +194,6 @@ class Home extends React.Component {
      
     //Decreases seconds in state by one
     decrementSeconds() {
-        // console.log('decrement Seconds called!')
             let { timeLeft } = this.state
             let { seconds, minutes } = timeLeft;
             this.setState({
@@ -280,14 +277,14 @@ class Home extends React.Component {
             audio: {
                 playing: false,
             }
-        }, () => console.log('reseting audio, this.state.audio: ', this.state.audio))
+        })
     }
 
     //Increments totalIntervals in state
     incrementTotalIntervals() {
         this.setState({
             totalIntervals: ++this.state.totalIntervals
-        }, () => {console.log('%ctotalIntervals in state: ', 'color: thistle; font-size: 20px', this.state.totalIntervals)})
+        })
     }
 
     //render/unmount the 'please check a box!' prompt 
@@ -333,9 +330,7 @@ class Home extends React.Component {
         const now = new Date()
         const clockInDateObj = new Date(now.getFullYear(), (now.getMonth() - 1), now.getDate(), now.getHours(), now.getMinutes(), now.getSeconds())
         const clockInString = this.formatDateToString(now)
-        
-        // console.log('this is the clock in STRING: ', clockInString)
-        
+                
         if(!this.state.clockedIn) {
             this.setState({
                 clockedIn: true,
@@ -372,8 +367,6 @@ class Home extends React.Component {
             console.log('%cShort break is hitting! Here is state: ', this.state)
             setTimeout(() => this.toggleBreak('short'), shortBreak);
             setTimeout(() => this.startTimer(), shortBreak);
-            // setTimeout(() => this.toggleBreak(), shortBreak);
-            // setTimeout(() => this.startTimer(), shortBreak);
 
             this.incrementTotalIntervals()
         }
@@ -418,7 +411,7 @@ class Home extends React.Component {
             set: ++this.state.set,
             intervals: 0,
             checks: 0,
-        }, () => {console.log('here we have it, state when a new set begins: ', this.state)})
+        })
     }
 
     //handle checkbox checking - triggers break after box is checked
@@ -453,7 +446,6 @@ class Home extends React.Component {
                 debugger
                 this.toggleBreak('short')
             }
-            console.log('this is the state of break in checkboxprompt: ', this.state.break)
         }
     };
 
@@ -462,12 +454,10 @@ class Home extends React.Component {
         //long break
         if(length === 'long') {
             debugger
-            console.log('LONG BREAK in state: ', this.state.longBreak)
             this.setState({
                 longBreak: !this.state.longBreak,
                 modalIsOpen: !this.state.modalIsOpen,
             }, () => {
-                console.log('long break was toggled, this is long break: ', this.state.longBreak)
                 if(this.state.longBreak) {
                     this.startBreak()
                 }
@@ -475,7 +465,6 @@ class Home extends React.Component {
         //short break
         } else if(length === 'short') {
             debugger
-            console.log('SHORT BREAK in state: ', this.state.break)
             //set 'break' to true in state
             this.setState({
                 break: !this.state.break,
