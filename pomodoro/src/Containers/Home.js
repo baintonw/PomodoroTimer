@@ -38,7 +38,6 @@ class Home extends React.Component {
 
     state = {
         user: 'Will',
-
         session: {
             user: 'Will',
             sets: [
@@ -49,10 +48,23 @@ class Home extends React.Component {
                             number: 1,
                             start: new Date(),
                             end: new Date(),
-                            task: "String",
+                            task: "TEST INTERVAL",
                         }
                     ],
-                }
+                    test: 'This is a test'
+                },
+                {
+                    number: 2,
+                    intervals: [
+                        {
+                            number: 1,
+                            start: new Date(),
+                            end: new Date(),
+                            task: "TEST INTERVAL",
+                        }
+                    ],
+                    test: 'This is a test'
+                },
             ]
         },
         clockedIn: false,
@@ -135,18 +147,6 @@ class Home extends React.Component {
             [e.target.name]: e.currentTarget.value,
         });
     };
-
-
-    ///////////////////////////////////////////////////
-    /*
-        
-    //Add completed set to completedSets in state
-
-    //Add completed interval to completedIntervals in state
-
-     */
-    ///////////////////////////////////////////////////
-
 
     /* CLOCK FUNCTIONS */
 
@@ -391,6 +391,54 @@ class Home extends React.Component {
             checks: 0,
         })
     }
+        
+    //Adds a completed set to completedSets in state
+
+    addCompletedSet() {
+        console.log('Now adding completed set...')
+        const newSet = {
+            user: 'Will',
+            intervals: [{
+                number: this.state.set,
+                start: new Date(),
+                end: new Date(),
+                task: 'Add a new set'
+            }],
+        };
+        this.setState({
+            ...this.state,
+            session: {
+                ...this.state.session,
+                sets: [...this.state.session.sets, newSet],
+            }
+        }, () => console.log(this.state))
+    }
+
+    //Add completed interval to completedIntervals in state
+// This does not work
+    addCompletedInterval() {
+        const newInterval = {
+          number: 1,
+          start: new Date(),
+          end: new Date(),
+          task: 'Centering the div'
+        };
+
+        
+        this.setState({
+            ...this.state,
+            session: {
+                ...this.state.session,
+                sets: [
+                    ...this.state.session.sets,
+                    this.state.session.sets[this.state.session.sets.length - 1].intervals.push(newInterval)
+
+                ],
+            }
+        })
+    }
+
+
 
     //handle checkbox checking - triggers break after box is checked
     handleCheck(e) {
@@ -490,20 +538,9 @@ class Home extends React.Component {
     }
 
     render() {
-        // console.log('this.state.timeLeft', this.state.timeLeft)
         console.log('this.state.session: ',  this.state.session)
         return(
             <div className="home-page">
-                {/* <Link to="/timesheet">
-                    Make Hello disappear
-                </Link>
-
-                <Route exact={true} path="/" render={() => (
-                    <h2>This only appears on the root url!</h2>
-                )}> */
-                }
-
-                {/* </Route> */}
                 <img onClick={(e) => this.handleMenuToggle(e)} className={this.state.menuIsOpen ? "toggle-btn open" : "toggle-btn"} src={CancelCircle}></img>
                 <Sidebar
                     user={this.state.user}
@@ -532,6 +569,9 @@ class Home extends React.Component {
                     resetClock={(e) => this.resetClock(e)}
                 >
                 </Reset>
+                <button onClick={() => this.addCompletedSet()}>Add completed set</button>
+                <button onClick={() => this.addCompletedSet()}>Add completed interval</button>
+
                 <Modal
                     timeLeft={this.state.timeLeft}
                     checkboxPrompt={this.state.checkboxPrompt}
