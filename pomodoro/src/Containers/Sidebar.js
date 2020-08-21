@@ -11,7 +11,6 @@ import Timesheet from '../Components/Timesheet'
 
 
 const Sidebar = (props) => {
-    console.log('clock in time in Sidebar: ', props.clockInTime)
     return (
         <div className={props.menuIsOpen ? "menu open" : "menu"}>
                 {/* <h2>{props.formatDateToString(props.clockInTime)}</h2> */}

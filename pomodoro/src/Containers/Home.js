@@ -43,25 +43,25 @@ class Home extends React.Component {
             sets: [
                 {
                     number: 1,
+                    name: "First Set",
                     intervals: [
-                        {
-                            number: 1,
-                            start: new Date(),
-                            end: new Date(),
-                            task: "TEST INTERVAL",
-                        }
+                        
                     ],
                     test: 'This is a test'
                 },
                 {
                     number: 2,
+                    name: "Second Set",
                     intervals: [
-                        {
-                            number: 1,
-                            start: new Date(),
-                            end: new Date(),
-                            task: "TEST INTERVAL",
-                        }
+                        
+                    ],
+                    
+                },
+                {
+                    number: 3,
+                    name: "Last Set",
+                    intervals: [
+                        
                     ],
                     test: 'This is a test'
                 },
@@ -96,6 +96,10 @@ class Home extends React.Component {
         },
     };
 
+    //Lifecycle Functions
+    componentDidMount() {
+        console.clear();
+    }
 
     /*  Handling functions  */
 
@@ -416,37 +420,55 @@ class Home extends React.Component {
 
     //Add completed interval to completedIntervals in state
 // This does not work
-    // addCompletedInterval() {
-    //     console.log('Now adding completed interval...')
-    //     //create the new interval to be added
-    //     const newInterval = {
-    //       number: 1,
-    //       start: new Date(),
-    //       end: new Date(),
-    //       task: 'Centering the div'
-    //     };
+    addCompletedInterval() {
+        console.log('Now adding completed interval...')
+        console.log('this.state.session.sets at start: ', this.state.session.sets)
 
-    //     //create copy of last set in state
-    //     const lastSetCopy = this.state.session.sets[this.state.session.sets.length - 1]
-    //     // push newly created interval to intervals array on that set
-    //     lastSetCopy.intervals.push(newInterval)
-    //     this.setState({
-    //         ...this.state,
-    //         session: {
-    //             sets: [
-    //                 ...this.state.session.sets,
-    //                 lastSetCopy
-    //             ]
-    //         }
-    //     }, () => console.log(this.state.session))
+        //create the new interval to be added
+        const newInterval = {
+          number: 99,
+          task: 'I AM NEW'
+        };
+
+        //copy sets array
+
+        let setsMinusLastCopy 
+
+
+        setsMinusLastCopy = this.state.session.sets.slice(0, this.state.session.sets.length - 1);
         
-    // }
+        console.log('setsMinusLast: ', setsMinusLastCopy)
+
+        //FUCK
+
+        //create copy of last set in state
+        let lastSetCopy; 
+        lastSetCopy = this.state.session.sets.slice(-1)[0]
+
+        // push newly created interval to intervals array on that set
+        lastSetCopy.intervals.push(newInterval)
+
+        setsMinusLastCopy.push(lastSetCopy)
+
+        const newSet = setsMinusLastCopy
+
+        console.log('newLastSet: ', lastSetCopy)
+
+        //add the last set copy back to the (copied) sets array
+        this.setState({
+            ...this.state,
+            session: {
+                sets: newSet
+                
+            }
+        }, () => console.log('this.state.session.sets: ', this.state.session.sets))
+        
+    }
 
 
 
     //handle checkbox checking - triggers break after box is checked
     handleCheck(e) {
-        console.log('handleCheck -> this.state.break: ', this.state.break)
         //since the checkbox registers as checked BEFORE the event is passed, checking 
         //if the box has been checked is counter-intuitive
         if(e.currentTarget.checked) {
@@ -524,7 +546,7 @@ class Home extends React.Component {
 
     //'Would you like to change your task?' render
     renderChangeTaskPrompt() {
-        
+            console.clear();
             return (
                 <WelcomeModalContent 
                     changeTaskPrompt={this.state.changeTaskPrompt}
@@ -537,12 +559,7 @@ class Home extends React.Component {
             )
     };
 
-    checkState(e) {
-        console.log('This is timeLeft in state', this.state.timeLeft)
-    }
-
     render() {
-        console.log('this.state.session: ',  this.state.session)
         return(
             <div className="home-page">
                 <img onClick={(e) => this.handleMenuToggle(e)} className={this.state.menuIsOpen ? "toggle-btn open" : "toggle-btn"} src={CancelCircle}></img>
