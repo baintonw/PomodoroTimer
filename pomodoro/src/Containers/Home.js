@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
 import tomato from '../assets/tomato.svg'
 
@@ -34,37 +34,37 @@ import CancelCircle from '../assets/cancel-circle.svg'
 
 
 
-class Home extends React.Component {
+class Home extends Component {
 
     state = {
         user: 'Will',
+        task: '',
+        allTasks: [],
         session: {
             user: 'Will',
             sets: [
                 {
                     number: 1,
-                    name: "First Set",
                     intervals: [
                         
-                    ],
-                    test: 'This is a test'
+                    ]
                 },
-                {
-                    number: 2,
-                    name: "Second Set",
-                    intervals: [
+                // {
+                //     number: 2,
+                //     name: "Second Set",
+                //     intervals: [
                         
-                    ],
+                //     ],
                     
-                },
-                {
-                    number: 3,
-                    name: "Last Set",
-                    intervals: [
+                // },
+                // {
+                //     number: 3,
+                //     name: "Last Set",
+                //     intervals: [
                         
-                    ],
-                    test: 'This is a test'
-                },
+                //     ],
+                //     test: 'This is a test'
+                // },
             ]
         },
         clockedIn: false,
@@ -75,8 +75,7 @@ class Home extends React.Component {
         pickATask: true,
         menuIsOpen: false,
         modalIsOpen: true,
-        task: '',
-        allTasks: [],
+        
         timeLeft: {
             hours: 0,
             minutes: 25,
@@ -403,7 +402,7 @@ class Home extends React.Component {
         const newSet = {
             user: 'Will',
             intervals: [{
-                number: this.state.set,
+                number: 2,
                 start: new Date(),
                 end: new Date(),
                 task: 'Add a new set'
@@ -422,6 +421,7 @@ class Home extends React.Component {
     //Add completed interval to completedIntervals in state
     addCompletedInterval() {
         console.log('Now adding completed interval...')
+        console.log('Current sets: \n', this.state.session.sets)
 
         //define the new interval to be added
         const newInterval = {
@@ -429,8 +429,18 @@ class Home extends React.Component {
           task: 'I AM NEW'
         };
 
+        console.log('Completed Interval')
+
+
+        if (this.state.session.sets[this.state.session.sets.length - 1].intervals.length > 3) {
+            console.log('%cAll full up!', 'color: salmon;font-size:30px')
+            this.addCompletedSet()
+            return
+        }
+
+
         //copy sets array
-        //all sets minus the last set
+        //all sets minus the last set (the current one)
         let setsMinusLastCopy 
         setsMinusLastCopy = this.state.session.sets.slice(0, this.state.session.sets.length - 1);
         
@@ -438,6 +448,7 @@ class Home extends React.Component {
         let lastSetCopy; 
         lastSetCopy = this.state.session.sets.slice(-1)[0]
 
+       
         // push newly created interval to intervals array onto the last set
         lastSetCopy.intervals.push(newInterval)
 
