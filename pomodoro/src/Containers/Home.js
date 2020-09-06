@@ -397,9 +397,9 @@ class Home extends React.Component {
     }
         
     //Adds a completed set to completedSets in state
-
     addCompletedSet() {
         console.log('Now adding completed set...')
+        //define the set to be added (currently hard-coded)
         const newSet = {
             user: 'Will',
             intervals: [{
@@ -409,6 +409,7 @@ class Home extends React.Component {
                 task: 'Add a new set'
             }],
         };
+        //add that new set to state
         this.setState({
             ...this.state,
             session: {
@@ -419,37 +420,31 @@ class Home extends React.Component {
     }
 
     //Add completed interval to completedIntervals in state
-// This does not work
     addCompletedInterval() {
         console.log('Now adding completed interval...')
-        console.log('this.state.session.sets at start: ', this.state.session.sets)
 
-        //create the new interval to be added
+        //define the new interval to be added
         const newInterval = {
           number: 99,
           task: 'I AM NEW'
         };
 
         //copy sets array
-
+        //all sets minus the last set
         let setsMinusLastCopy 
-
-
         setsMinusLastCopy = this.state.session.sets.slice(0, this.state.session.sets.length - 1);
         
-        console.log('setsMinusLast: ', setsMinusLastCopy)
-
-        //FUCK
-
         //create copy of last set in state
         let lastSetCopy; 
         lastSetCopy = this.state.session.sets.slice(-1)[0]
 
-        // push newly created interval to intervals array on that set
+        // push newly created interval to intervals array onto the last set
         lastSetCopy.intervals.push(newInterval)
 
+        //add the copy of the last set, with the new interval, to the the other sets
         setsMinusLastCopy.push(lastSetCopy)
-
+        
+        //the new set is all of the sets with the new interval
         const newSet = setsMinusLastCopy
 
         console.log('newLastSet: ', lastSetCopy)
