@@ -78,8 +78,8 @@ class Home extends Component {
         
         timeLeft: {
             hours: 0,
-            minutes: 25,
-            seconds: 0,
+            minutes: 0,
+            seconds: 1,
         },
         set: 0,
         intervals: 0,
@@ -219,7 +219,9 @@ class Home extends Component {
         this.playSound();
         this.promptCheck();
         this.stopTimer();
-        this.incrementIntervals()
+        this.incrementIntervals();
+        // This is new
+        this.addCompletedInterval();
 
     };
 
@@ -234,8 +236,8 @@ class Home extends Component {
             ...this.state,
             timeLeft: {
                 hours: 0,
-                minutes: 25,
-                seconds: 0,
+                minutes: 0,
+                seconds: 1,
             }
          })
          
@@ -338,16 +340,17 @@ class Home extends Component {
     startBreak() {
         console.log('starting break!')
         //if break is true, toggle in off in x amount of time, this is the break interval
+        const oneSecond = 1000
         //start a five minute break
-        const shortBreak = 300000;
+        const shortBreak = 300000
         //start a twenty five minute break
-        const longBreak = 1500000;
+        const longBreak = 1500000
         // const longBreak = 5000
         if(this.state.break) {
             debugger
             console.log('%cShort break is hitting! Here is state: ', this.state)
-            setTimeout(() => this.toggleBreak('short'), shortBreak);
-            setTimeout(() => this.startTimer(), shortBreak);
+            setTimeout(() => this.toggleBreak('short'), oneSecond);
+            setTimeout(() => this.startTimer(), oneSecond);
 
             this.incrementTotalIntervals()
         }
@@ -356,8 +359,9 @@ class Home extends Component {
             console.log('%cThis is where we are at LONG BREAK: ', this.state)
             
             debugger           
-            this.newSet();
             setTimeout(() => this.toggleBreak('long'), longBreak);
+            this.newSet();
+            this.addCompletedSet();
             this.incrementTotalIntervals();
 
         }
@@ -415,7 +419,7 @@ class Home extends Component {
                 ...this.state.session,
                 sets: [...this.state.session.sets, newSet],
             }
-        }, () => console.log(this.state))
+        }, () => console.log('Current sets: \n', this.state.session.sets))
     }
 
     //Add completed interval to completedIntervals in state
