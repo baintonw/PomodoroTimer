@@ -101,7 +101,7 @@ class Home extends Component {
         })
     };
 
-    //handle submission to all tasks
+    //handle submission to all  s
     handleTaskSubmit(e) {
         e.preventDefault();
         const taskObj = {
@@ -131,9 +131,12 @@ class Home extends Component {
     //set single task in state
     setTask(e) {
         e.preventDefault();
+        if(!this.state.workDay.clockIn) {
+            this.clockIn();
+        }
         this.setState({
             [e.target.name]: e.currentTarget.value,
-        });
+        }, ()=> {console.log('Task is set, here is state: ', this.state)});
     };
 
     /* CLOCK FUNCTIONS */
@@ -291,10 +294,9 @@ class Home extends Component {
     }
 
     //Clock In
-    clockIn() {
+    clockIn(e) {
         //Desired format --> HH:MM - MM/DD 
         //Therefore I need formatted hours, formatted minutes, months, and the date
-        // const clockInTime = new Date()
         const now = new Date()
         const clockInDateObj = new Date(now.getFullYear(), (now.getMonth() - 1), now.getDate(), now.getHours(), now.getMinutes(), now.getSeconds())
         const clockInString = this.formatDateToString(now)
@@ -306,7 +308,7 @@ class Home extends Component {
                     ...this.state.workDay,
                     clockIn: clockInDateObj, 
                 }
-            }, () => {console.log('this.state.workDay.clockOut: ', this.state.workDay.clockIn)})
+            })
         } else {
             this.setState({
                 clockedIn: false,
@@ -314,7 +316,7 @@ class Home extends Component {
                     ...this.state.workDay,
                     clockOut: clockInDateObj, 
                 }
-            }, () => {console.log('this.state.workDay.clockOut: ', this.state.workDay.clockOut)})
+            })
         }
     }
 
@@ -555,6 +557,8 @@ class Home extends Component {
     };
 
     render() {
+        console.log('this.clockIn: ', this.clockIn)
+
         return(
             <div className="home-page">
                 <img onClick={(e) => this.handleMenuToggle(e)} className={this.state.menuIsOpen ? "toggle-btn open" : "toggle-btn"} src={CancelCircle}></img>

@@ -10,7 +10,7 @@ import "./modal-content.scss"
 import path from "../assets/cross.svg";
 
 const WelcomeModalContent = (props) => {
-    // console.log('props in welcome modal: ',)
+    console.log('props: ', props)
     return(
         <div className="modal-container__content">
                 <div className="modal-container__content__close-btn" onClick={(e) => props.handleModalToggle(e)}>
@@ -20,6 +20,7 @@ const WelcomeModalContent = (props) => {
                 <form onSubmit={(e) =>
                         {
                             props.handleTaskSubmit(e);
+                            // props.clockIn(e);
                             props.handleMenuToggle(e);
                         }
                 }>   
