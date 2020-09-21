@@ -42,6 +42,7 @@ class Home extends Component {
         allTasks: [],
         session: {
             user: 'Will',
+            //I need a first set hard-coded for now
             sets: [
                 {
                     number: 1,
@@ -49,22 +50,6 @@ class Home extends Component {
                         
                     ]
                 },
-                // {
-                //     number: 2,
-                //     name: "Second Set",
-                //     intervals: [
-                        
-                //     ],
-                    
-                // },
-                // {
-                //     number: 3,
-                //     name: "Last Set",
-                //     intervals: [
-                        
-                //     ],
-                //     test: 'This is a test'
-                // },
             ]
         },
         clockedIn: false,
